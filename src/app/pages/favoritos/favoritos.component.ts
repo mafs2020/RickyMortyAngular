@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IPersonaje } from 'src/app/interfaces';
+import { InicioService } from 'src/app/services/inicio.service';
 
 @Component({
   selector: 'app-favoritos',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FavoritosComponent implements OnInit {
 
-  constructor() { }
+  personajes: IPersonaje[] = [];
+  constructor( private inicioService: InicioService ) { }
 
   ngOnInit(): void {
+    this.getFavoritos();
+  }
+
+  getFavoritos(): void {
+    this.personajes = this.inicioService.personajesGetter;
+  }
+
+  hola(per: IPersonaje){
+    this.personajes = this.personajes.filter(p => p.id != per.id)
+    this.inicioService.eliminar(per);
   }
 
 }

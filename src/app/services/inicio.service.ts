@@ -12,7 +12,7 @@ import { Observable, of, throwError } from 'rxjs';
 export class InicioService {
   dinero?: number;
   personajes = 'personajes';
-  url = "https://rickandmortyapi.com/api/character"
+  url = "https://rickandmortyapi.com/api/character";
   info!: IInfo;
 
   constructor( private http: HttpClient) { }
@@ -49,6 +49,17 @@ export class InicioService {
     }
     agregar ? '' : f.push(per);
     localStorage.setItem(this.personajes, JSON.stringify(f));
+  }
+
+  eliminar(per: IPersonaje): void {
+    let arreglo = this.personajesGetter;
+    arreglo = arreglo.filter( r => r.id != per.id);
+    console.log('arreglo :>> ', arreglo);
+    this.personajesSetter = arreglo;
+  }
+
+  set personajesSetter(personajes: IPersonaje[]) {
+    localStorage.setItem(this.personajes, JSON.stringify(personajes));
   }
 
 }

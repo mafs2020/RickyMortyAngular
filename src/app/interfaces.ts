@@ -11,7 +11,8 @@ export interface IPersonaje {
     type: string;
     gender: string;
     origin: { name: string; url: string };
-    image: string
+    image: string;
+    favorito?: boolean;
 };
 
 export interface IInfo {
