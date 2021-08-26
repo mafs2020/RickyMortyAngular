@@ -1,1 +1,9 @@
-<p>dashboard works!</p>
+<section class="cards">
+    <div *ngFor="let item of personajes" class="card">
+        <app-card [personaje]="item"></app-card>
+    </div>
+</section>
+<div>
+    <input (click)="paginacion()" type="button" value="regresar" />
+    <input (click)="paginacion()" type="button" value="siguiente" />
+</div>
