@@ -9,21 +9,32 @@ import { Observable, of, throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class InicioService {
   dinero?: number;
   personajes = 'personajes';
   url = "https://rickandmortyapi.com/api/character";
   info!: IInfo;
+  personjesFvitos = this.personajesGetterTodo;
 
   constructor( private http: HttpClient) { }
 
-  getAllChrcter$(siguiente: number): Observable<IRequest|never> {
+  getAllChrcter$(siguiente: number): Observable<IRequest> {
     return this.http.get<IRequest>(`${this.url}/?page=${siguiente}`)
     .pipe(
       tap(data => this.info = data.info),
       map(data => {
         data.results = data.results.map((r: any) => {
           const { episode, ...rest } = r;
+          for (let i = 0; i < this.personjesFvitos.length; i++) {
+            const element = this.personjesFvitos[i];
+            if(element.id == rest.id){
+              rest.favorito = element.id == rest.id
+              break;
+            }
+          }
+          
+          console.log(rest.favorito);
           return rest;
         })
         return data;
@@ -33,13 +44,20 @@ export class InicioService {
     );
   }
 
-  get personajesGetter() : IPersonaje[] {
+  personajesGetter(desde = 0) : IPersonaje[] {
+    const l = localStorage.getItem(this.personajes) as string;
+    let arreglos = JSON.parse(l) as IPersonaje[];
+    let f = arreglos.slice((desde*20),(desde*20)+20);
+    return arreglos.length > 0 ? f : [];
+  }
+
+  get personajesGetterTodo(): IPersonaje[] {
     const l = localStorage.getItem(this.personajes) as string;
     return l ? JSON.parse(l) : [];
   }
 
   set personaje(per: IPersonaje) {
-    const f = this.personajesGetter;
+    const f = this.personajesGetterTodo;
     let agregar = false;
     for (let i = 0; i < f.length; i++) {
       if(f[i].id == per.id){
@@ -52,7 +70,7 @@ export class InicioService {
   }
 
   eliminar(per: IPersonaje): void {
-    let arreglo = this.personajesGetter;
+    let arreglo = this.personajesGetterTodo;
     arreglo = arreglo.filter( r => r.id != per.id);
     console.log('arreglo :>> ', arreglo);
     this.personajesSetter = arreglo;

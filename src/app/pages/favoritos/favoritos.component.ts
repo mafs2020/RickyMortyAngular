@@ -8,16 +8,14 @@ import { InicioService } from 'src/app/services/inicio.service';
   styleUrls: ['./favoritos.component.scss']
 })
 export class FavoritosComponent implements OnInit {
-
+  paginacion: number = 0;
   personajes: IPersonaje[] = [];
+  limite?: number;
   constructor( private inicioService: InicioService ) { }
 
   ngOnInit(): void {
-    this.getFavoritos();
-  }
-
-  getFavoritos(): void {
-    this.personajes = this.inicioService.personajesGetter;
+    const todos = this.inicioService.personajesGetterTodo;
+    this.limite = Math.ceil((todos.length -1) /20);
   }
 
   hola(per: IPersonaje){

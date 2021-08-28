@@ -5,3 +5,34 @@
     justify-content: space-evenly;
     align-items: center;
 }
+
+.botones{
+    margin: 0 auto;
+    // background-color: cornflowerblue;
+    padding: auto;
+    text-align: center;
+}
+
+.botones input[type="button"]{
+    background-color: #f2f2f2;
+    color: var(--colorPrincipal);
+    padding: 1rem;
+    text-transform: capitalize;
+    font-weight: 600;
+    border-radius: 0.8rem;
+    display: inline-block;
+    margin: 1rem auto;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid;
+    &:hover{
+        background-color: var(--colorPrincipal);
+        color: #f2f2f2;
+        border: 1px solid #f2f2f2;
+    }
+}
+
+.botones input[type="button"]:first-child{
+    margin-right: 1rem;
+    // outline: none;
+}

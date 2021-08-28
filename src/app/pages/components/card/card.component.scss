@@ -55,7 +55,7 @@
 .card input {
     margin: auto;
     padding: 0.5rem 2rem;
-    background-color: #f2f2f2;
+    background-color: #fff;
     color: darkred;
     border: 1px solid darkred;
     border-radius: 0.8rem;
@@ -63,8 +63,8 @@
     text-transform: capitalize;
     &:hover {
         background-color: darkred;
-        color: #f2f2f2;
-        border: 1px solid #f2f2f2;
+        color: #fff;
+        border: 1px solid #fff;
         cursor: pointer;
     }
 }

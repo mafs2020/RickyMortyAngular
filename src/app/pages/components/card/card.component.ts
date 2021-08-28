@@ -22,7 +22,8 @@ export class CardComponent implements OnInit {
 
   guardar() {
     this.inicioService.personaje = this.personaje;
-    console.log(this.inicioService.personajesGetter);
+    
+    console.log(this.inicioService.personajesGetter());
   }
 
   eliminar() {

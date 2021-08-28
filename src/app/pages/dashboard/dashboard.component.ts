@@ -29,8 +29,16 @@ export class DashboardComponent implements OnInit {
       // console.log(data);
       this.next = data.info.pages;
       this.personajes = data.results;
+      this.favoritos();
     }))
     .subscribe();
+  }
+  
+  favoritos() {
+    const personajesFvoritos = this.inicioService.personajesGetter;
+    let f: IPersonaje[] = [];
+    console.table(f);
+    // this.personajes = f;
   }
   
 }

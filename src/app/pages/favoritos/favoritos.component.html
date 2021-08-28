@@ -1,3 +1,7 @@
 <section class="cards">
     <app-card *ngFor="let item of personajes" [personaje]="item" [lugar]="'favorito'" (personajeEliminar)="hola($event)"></app-card>
 </section>
+<div>
+    <input type="button" value="regresar" />
+    <input type="button" value="siguiente" />
+</div>
