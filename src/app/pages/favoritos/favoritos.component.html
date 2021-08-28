@@ -1,7 +1,13 @@
-<section class="cards">
-    <app-card *ngFor="let item of personajes" [personaje]="item" [lugar]="'favorito'" (personajeEliminar)="hola($event)"></app-card>
-</section>
-<div>
-    <input [disabled]="paginacion === 0" (click)="nPaginacion(-1)" type="button" value="regresar" />
-    <input [disabled]="paginacion === (limite!-1)" (click)="nPaginacion(1)" type="button" value="siguiente" />
-</div>
+<!-- <div class="todo"> -->
+
+    <!-- <ng-container> -->
+        <div class="cards">
+            <app-card *ngFor="let item of personajes" [personaje]="item" [lugar]="'favorito'" (personajeEliminar)="hola($event)"></app-card>
+        </div>
+    <!-- </ng-container> -->
+    <div class="marge todo">
+        <input [disabled]="paginacion === 0" (click)="nPaginacion(-1)" type="button" value="regresar" />
+        <input [disabled]="paginacion === (limite!-1)" (click)="nPaginacion(1)" type="button" value="siguiente" />
+    </div>
+
+<!-- </div> -->
