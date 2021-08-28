@@ -16,6 +16,13 @@ export class FavoritosComponent implements OnInit {
   ngOnInit(): void {
     const todos = this.inicioService.personajesGetterTodo;
     this.limite = Math.ceil((todos.length -1) /20);
+    this.nPaginacion(this.paginacion);
+  }
+
+  nPaginacion(num: number) {
+    this.paginacion = this.paginacion + num;
+    this.personajes = this.inicioService.personajesGetter( this.paginacion );
+    console.log(this.paginacion);
   }
 
   hola(per: IPersonaje){

@@ -33,10 +33,9 @@ export class InicioService {
               break;
             }
           }
-          
           console.log(rest.favorito);
           return rest;
-        })
+        });
         return data;
       }),
       // catchError(err => of()),
