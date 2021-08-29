@@ -2,7 +2,10 @@
 :root{
     --colorPrincipal: #261C2C
 }
+
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;1,400&display=swap');
+@import '~ngx-toastr/toastr';
+
 *{
     padding: 0;
     margin: 0;

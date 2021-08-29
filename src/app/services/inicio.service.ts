@@ -71,7 +71,6 @@ export class InicioService {
   eliminar(per: IPersonaje): void {
     let arreglo = this.personajesGetterTodo;
     arreglo = arreglo.filter( r => r.id != per.id);
-    console.log('arreglo :>> ', arreglo);
     this.personajesSetter = arreglo;
   }
 

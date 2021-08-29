@@ -15,8 +15,10 @@
     </div>
     <hr />
     <div class="botones" style="background: #fff;">
-        <input *ngIf="lugar !== 'favorito'" (click)="guardar()" type="button" value="guardar">
+        <input *ngIf="lugar !== 'favorito' && (personaje.favorito !== true)" (click)="guardar()" type="button" value="guardar" />
+        <!-- <input *ngIf="lugar !== 'favorito'" (click)="guardar()" type="button" value="guardar"> -->
+        <input *ngIf="lugar !== 'favorito' && (personaje.favorito === true)" (click)="eliminarDentro()" type="button" value="eliminar" />
         <!-- TODO eliminar la funcion guardar -->
-        <input *ngIf="lugar === 'favorito'" (click)="eliminar()" type="button" value="eliminar">
+        <input *ngIf="lugar === 'favorito'" (click)="eliminar()" type="button" value="eliminar" />
     </div>
 </div>
