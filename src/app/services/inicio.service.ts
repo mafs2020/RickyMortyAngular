@@ -85,7 +85,8 @@ export class InicioService {
     // ?name=rick&status=alive
     // const params = new HttpParams().set('name', 'rick').set('status', 'alive');
 
-    return this.http.get<IPersonaje[]>(`${this.url}`, { params: { name: termino } });
+    return this.http.get<IPersonaje[]>(`${this.url}`, { params: { name: termino } })
+      .pipe(catchError(err => of(err)));
   }
 
 }

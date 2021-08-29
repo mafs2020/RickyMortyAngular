@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { combineLatest, of, throwError } from 'rxjs';
-import { catchError, combineAll, concatAll, concatMap, debounceTime, delay, delayWhen, distinctUntilChanged, mergeMap, retry, retryWhen, tap } from 'rxjs/operators';
+import { EMPTY, of, Subject, throwError } from 'rxjs';
+import { catchError, combineAll, concatAll, concatMap, debounceTime, distinctUntilChanged, mergeMap, switchMap, tap } from 'rxjs/operators';
 import { IPersonaje, IRequest } from 'src/app/interfaces';
 
 import { InicioService } from 'src/app/services/inicio.service';
@@ -15,34 +15,32 @@ export class DashboardComponent implements OnInit {
   pagina = 0;
   request?: IRequest;
   buscador = new FormControl('');
-  d?: string;
+  buscadorSubject$:  Subject<string> = new Subject();
+  dd: string = '';
+  buscadorSubject = this.buscadorSubject$.asObservable();
   constructor(private inicioService: InicioService) { }
 
   ngOnInit(): void {
-    console.log(!!this.request?.info?.next);
     this.paginacion();
     this.buscador.valueChanges
       .pipe(
-        tap(data => console.log(data)),
         debounceTime(500),
         tap(data => console.log(data)),
         distinctUntilChanged(),
-        mergeMap((dt) => this.inicioService.buscar(dt)),
-        catchError(err => of()),
-        catchError(error => {
-          if (error.status === 401 || error.status === 403 ) {
-            // handle error
-          }
-          this.buscador.reset;
-          return throwError(error);
-        })
-
-        // throwError(err)
+        switchMap((dt) => this.inicioService.buscar(dt)),
+        catchError(err => of(err))
       ).subscribe(r => console.log(r));
+
+      // this.buscadorSubject.pipe(
+      //   debounceTime(500),
+      //   tap(data => console.log(data)),
+      //   // distinctUntilChanged(),
+      //   mergeMap((dt) => this.inicioService.buscar(dt)),
+      //   catchError(err => {console.error(err); return of(err)}),
+      //   // tap(data => console.log(data))
+      // ).subscribe();
+
   }
-  // regresar() {
-  //   const d = combineLatest([mergeMap(() => this.inicioService.buscar( this.buscador.value ))]);
-  // }
 
   paginacion(atras?: boolean) {
     let urll = atras ? this.request?.info?.prev! : this.request?.info?.next!;
@@ -57,10 +55,19 @@ export class DashboardComponent implements OnInit {
     .subscribe();
   }
 
-  saverange(data: any) {
-    console.log('object');
-    console.log('data :>> ', data);
-    this.d;
+  escribe(){
+    this.buscadorSubject$.next(this.dd);
   }
   
 }
+
+  // this.heroes$ = this.searchTerms.pipe(
+  //   // wait 300ms after each keystroke before considering the term
+  //   debounceTime(300),
+
+  //   // ignore new term if same as previous term
+  //   distinctUntilChanged(),
+
+  //   // switch to new search observable each time the term changes
+  //   switchMap((term: string) => this.heroService.searchHeroes(term)),
+  // );

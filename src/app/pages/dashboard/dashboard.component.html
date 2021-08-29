@@ -1,8 +1,9 @@
 <div  class="buscador">
-    <!-- <input [formControl]="buscador" type="text" name="buscador" id="buscador"> -->
-    <input (onchange)="saverange($event.target)" type="text" name="buscador" id="buscador">
-    <input (ngModelChange)="saverange($event)" type="text" name="buscador" id="buscador2">
-    <input [(ngModel)]="d" type="text" name="buscador" id="buscador3">
+    <input [formControl]="buscador" type="text" name="buscador" id="buscador">
+    <!-- <input [(ngModel)]="dd" (keyup)="escribe()" type="text" name="buscador" id="buscador"> -->
+    
+    <!-- <input #inputt (input)="conseguir(inputt.value)" id="search-box" type="text" name="buscador"> -->
+    <!-- <input [(ngModel)]="dd" (ngModelChange)="escribe()" id="search-box2" type="text" name="buscador"> -->
 </div>
 <section class="cards" *ngIf="request?.results?.length !== 0; else nodata">
     
