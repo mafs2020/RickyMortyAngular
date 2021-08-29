@@ -30,6 +30,11 @@
         color: #f2f2f2;
         border: 1px solid #f2f2f2;
     }
+    &:disabled{
+        background-color: grey;
+        color: honeydew;
+        border: none;
+    }
 }
 
 .botones input[type="button"]:first-child{

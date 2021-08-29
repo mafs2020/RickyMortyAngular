@@ -19,11 +19,10 @@ export class DashboardComponent implements OnInit {
   }
 
   paginacion() {
-    console.log(this.pagina == this.next);
+    // compruebasi es la ultima pagina
     if (this.pagina == this.next) {
       return;
     }
-    this.pagina += 1;
     this.inicioService.getAllChrcter$(this.pagina)
     .pipe(tap(data => {
       // console.log(data);
@@ -32,6 +31,7 @@ export class DashboardComponent implements OnInit {
       this.favoritos();
     }))
     .subscribe();
+    this.pagina += 1;
   }
   
   favoritos() {
