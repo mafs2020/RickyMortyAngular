@@ -31,4 +31,10 @@ input[type="button"]{
         background-color: #fff;
         color: var(--colorPrincipal);
     }
+    &:disabled{
+        background-color: grey;
+        color: honeydew;
+        border: none;
+        cursor: not-allowed;
+    }
 }

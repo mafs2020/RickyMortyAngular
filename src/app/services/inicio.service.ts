@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { IInfo, IPersonaje, IRequest } from '../interfaces';
 
 import { catchError, filter, map, tap } from 'rxjs/operators';
@@ -19,10 +19,13 @@ export class InicioService {
 
   constructor( private http: HttpClient) { }
 
-  getAllChrcter$(siguiente: number): Observable<IRequest> {
-    return this.http.get<IRequest>(`${this.url}/?page=${siguiente}`)
+  getAllChrcter$(url: string = this.url): Observable<IRequest|null> {
+    if(!url) {
+      return of();
+    }
+    return this.http.get<IRequest>(`${url}`)
     .pipe(
-      tap(data => this.info = data.info),
+      // tap(data => this.info = data.info),
       map(data => {
         data.results = data.results.map((r: any) => {
           const { episode, ...rest } = r;
@@ -76,6 +79,13 @@ export class InicioService {
 
   set personajesSetter(personajes: IPersonaje[]) {
     localStorage.setItem(this.personajes, JSON.stringify(personajes));
+  }
+
+  buscar(termino: string): Observable<IPersonaje[]>{
+    // ?name=rick&status=alive
+    // const params = new HttpParams().set('name', 'rick').set('status', 'alive');
+
+    return this.http.get<IPersonaje[]>(`${this.url}`, { params: { name: termino } });
   }
 
 }

@@ -34,10 +34,43 @@
         background-color: grey;
         color: honeydew;
         border: none;
+        cursor: not-allowed;
     }
 }
 
 .botones input[type="button"]:first-child{
     margin-right: 1rem;
     // outline: none;
+}
+
+
+
+.buscador{
+    background-color: hotpink;
+    padding: 1rem;
+}
+
+.buscador input{
+    display: block;
+    margin: 1rem auto;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    padding: 1rem;
+    width: 50%;
+    border: 3px solid transparent;
+    // background-image: url('	https://www.w3schools.com/css/searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    // padding-left: 40px;
+    &:focus{
+        border: 3px solid #555;
+        // background-color: rgb(201, 221, 228);
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .buscador input{ 
+        width: 80%;
+    }
 }

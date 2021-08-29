@@ -1,12 +1,18 @@
-<section class="cards" *ngIf="personajes.length !== 0; else nodata">
+<div  class="buscador">
+    <!-- <input [formControl]="buscador" type="text" name="buscador" id="buscador"> -->
+    <input (onchange)="saverange($event.target)" type="text" name="buscador" id="buscador">
+    <input (ngModelChange)="saverange($event)" type="text" name="buscador" id="buscador2">
+    <input [(ngModel)]="d" type="text" name="buscador" id="buscador3">
+</div>
+<section class="cards" *ngIf="request?.results?.length !== 0; else nodata">
     
-    <div *ngFor="let item of personajes" class="card">
+    <div *ngFor="let item of request?.results" class="card">
         <app-card [personaje]="item" [lugar]="'normal'"></app-card>
     </div>
 </section>
 <div class="botones">
-    <input [disabled]="pagina === 0" (click)="paginacion()" type="button" value="regresar" />
-    <input [disabled]="pagina === next" (click)="paginacion()" type="button" value="siguiente" />
+    <input [disabled]="!request?.info?.prev" (click)="paginacion(true)" type="button" value="regresar" />
+    <input [disabled]="!request?.info?.next" (click)="paginacion()" type="button" value="siguiente" />
 </div>
 
 <ng-template class="cards" #nodata>
