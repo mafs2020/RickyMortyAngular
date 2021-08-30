@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
         distinctUntilChanged(),
         switchMap((dt) => this.inicioService.buscar(dt)),
         catchError(err => of(err))
-      ).subscribe(r => console.log(r));
+      ).subscribe(r => this.request = r);
 
       // this.buscadorSubject.pipe(
       //   debounceTime(500),
