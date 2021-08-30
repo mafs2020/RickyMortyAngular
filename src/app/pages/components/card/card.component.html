@@ -8,7 +8,10 @@
     </svg>
     <div>
         <p>nombre: {{ personaje.name }}</p>
-        <p>estado: {{ personaje.status }}</p>
+        
+        <p *ngIf="personaje.status === 'Alive'">estado:  <span class="color"> {{ personaje.status }} </span> </p>
+        <p *ngIf="personaje.status === 'unknown' && personaje.status">estado:  <span class="colorA"> {{ personaje.status }} </span> </p>
+        <p *ngIf="personaje.status === 'Dead'">estado: <span class="colorR"> {{ personaje.status }} </span> </p>
         <p>especie: {{ personaje.species }}</p>
         <p>genero: {{ personaje.gender }}</p>
         <p>origen: {{ personaje.origin.name }}</p>
