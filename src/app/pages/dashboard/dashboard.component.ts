@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { EMPTY, of, Subject, throwError } from 'rxjs';
-import { catchError, combineAll, concatAll, concatMap, debounceTime, distinctUntilChanged, map, mergeMap, switchMap, tap } from 'rxjs/operators';
+import { EMPTY, Observable, of, Subject, throwError } from 'rxjs';
+import { catchError, combineAll, concatAll, concatMap, debounceTime, distinctUntilChanged, map, mergeMap, startWith, switchMap, tap } from 'rxjs/operators';
 import { IPersonaje, IRequest } from 'src/app/interfaces';
 
 import { InicioService } from 'src/app/services/inicio.service';
@@ -16,8 +16,8 @@ export class DashboardComponent implements OnInit {
   request?: IRequest;
   buscador = new FormControl('');
   buscadorSubject$:  Subject<string> = new Subject();
-  dd: string = '';
   buscadorSubject = this.buscadorSubject$.asObservable();
+  dd: string = '';
   constructor(private inicioService: InicioService) { }
 
   ngOnInit(): void {
@@ -38,15 +38,6 @@ export class DashboardComponent implements OnInit {
         }),
         catchError(err => of(err))
       ).subscribe(r => this.request = r);
-
-      // this.buscadorSubject.pipe(
-      //   debounceTime(500),
-      //   tap(data => console.log(data)),
-      //   // distinctUntilChanged(),
-      //   mergeMap((dt) => this.inicioService.buscar(dt)),
-      //   catchError(err => {console.error(err); return of(err)}),
-      //   // tap(data => console.log(data))
-      // ).subscribe();
 
   }
 
