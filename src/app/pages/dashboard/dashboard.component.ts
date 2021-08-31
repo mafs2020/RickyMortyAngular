@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { EMPTY, of, Subject, throwError } from 'rxjs';
-import { catchError, combineAll, concatAll, concatMap, debounceTime, distinctUntilChanged, mergeMap, switchMap, tap } from 'rxjs/operators';
+import { catchError, combineAll, concatAll, concatMap, debounceTime, distinctUntilChanged, map, mergeMap, switchMap, tap } from 'rxjs/operators';
 import { IPersonaje, IRequest } from 'src/app/interfaces';
 
 import { InicioService } from 'src/app/services/inicio.service';
@@ -28,6 +28,14 @@ export class DashboardComponent implements OnInit {
         tap(data => console.log(data)),
         distinctUntilChanged(),
         switchMap((dt) => this.inicioService.buscar(dt)),
+        map(data => {
+          try {
+            data.results = this.inicioService.favoritos(data.results);
+            return data;
+          } catch (error) {
+            return data;
+          }
+        }),
         catchError(err => of(err))
       ).subscribe(r => this.request = r);
 

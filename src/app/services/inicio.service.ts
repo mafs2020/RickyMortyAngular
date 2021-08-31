@@ -27,21 +27,10 @@ export class InicioService {
     .pipe(
       // tap(data => this.info = data.info),
       map(data => {
-        data.results = data.results.map((r: any) => {
-          const { episode, ...rest } = r;
-          for (let i = 0; i < this.personjesFvitos.length; i++) {
-            const element = this.personjesFvitos[i];
-            if(element.id == rest.id){
-              rest.favorito = element.id == rest.id
-              break;
-            }
-          }
-          console.log(rest.favorito);
-          return rest;
-        });
+        data.results = this.favoritos(data.results);
         return data;
       }),
-      // catchError(err => of()),
+      catchError(err => of(err)),
       catchError(err => throwError(err))
     );
   }
@@ -81,12 +70,43 @@ export class InicioService {
     localStorage.setItem(this.personajes, JSON.stringify(personajes));
   }
 
-  buscar(termino: string): Observable<IPersonaje[]>{
+  buscar(termino: string): Observable<IRequest>{
     // ?name=rick&status=alive
     // const params = new HttpParams().set('name', 'rick').set('status', 'alive');
 
-    return this.http.get<IPersonaje[]>(`${this.url}`, { params: { name: termino } })
+    return this.http.get<IRequest>(`${this.url}`, { params: { name: termino } })
       .pipe(catchError(err => of(err)));
   }
 
+  favoritos(personajes: IPersonaje[]): IPersonaje[] {
+    const d = personajes.map((r: any) => {
+      const { episode, ...rest } = r;
+      for (let i = 0; i < this.personjesFvitos.length; i++) {
+        const element = this.personjesFvitos[i];
+        if(element.id == rest.id){
+          rest.favorito = element.id == rest.id
+          break;
+        }
+      }
+      console.log(rest.favorito);
+      return rest;
+    });
+    return d;
+  }
+
 }
+
+
+// data.results = data.results.map((r: any) => {
+//   const { episode, ...rest } = r;
+//   for (let i = 0; i < this.personjesFvitos.length; i++) {
+//     const element = this.personjesFvitos[i];
+//     if(element.id == rest.id){
+//       rest.favorito = element.id == rest.id
+//       break;
+//     }
+//   }
+//   console.log(rest.favorito);
+//   return rest;
+// });
+// return data;
