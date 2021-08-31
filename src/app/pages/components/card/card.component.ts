@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CardComponent implements OnInit {
   @Input() personaje!: IPersonaje;
@@ -30,6 +30,7 @@ export class CardComponent implements OnInit {
   }
 
   eliminar() {
+    this.personaje.favorito = false;
     this.personajeEliminar.next(this.personaje);
     this.toastr.show('se borro de favoritos', `se borro a ${this.personaje.name}`);
   }

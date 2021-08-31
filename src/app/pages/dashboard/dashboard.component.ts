@@ -57,6 +57,11 @@ export class DashboardComponent implements OnInit {
   escribe(){
     this.buscadorSubject$.next(this.dd);
   }
+
+  hola(per: IPersonaje){
+    this.personajes = this.personajes.filter(p => p.id != per.id)
+    this.inicioService.eliminar(per);
+  }
   
 }
 
