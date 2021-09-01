@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { EMPTY, Observable, of, Subject, throwError } from 'rxjs';
-import { catchError, combineAll, concatAll, concatMap, debounceTime, distinctUntilChanged, map, mergeMap, startWith, switchMap, tap } from 'rxjs/operators';
+import { catchError, combineAll, concatAll, concatMap, debounceTime, distinctUntilChanged, map, mergeMap, startWith, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { IPersonaje, IRequest } from 'src/app/interfaces';
 
 import { InicioService } from 'src/app/services/inicio.service';
@@ -10,7 +10,7 @@ import { InicioService } from 'src/app/services/inicio.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   personajes: IPersonaje[] = [];
   pagina = 0;
   request?: IRequest;
@@ -36,7 +36,8 @@ export class DashboardComponent implements OnInit {
             return data;
           }
         }),
-        catchError(err => of(err))
+        catchError(err => of(err)),
+        takeUntil(this.buscadorSubject)
       ).subscribe(r => this.request = r);
 
   }
@@ -50,7 +51,9 @@ export class DashboardComponent implements OnInit {
       }
       this.request = data;
       console.log(!!this.request?.info?.next);
-    }))
+    }),
+    takeUntil(this.buscadorSubject)
+    )
     .subscribe();
   }
 
@@ -61,6 +64,10 @@ export class DashboardComponent implements OnInit {
   hola(per: IPersonaje){
     this.personajes = this.personajes.filter(p => p.id != per.id)
     this.inicioService.eliminar(per);
+  }
+  ngOnDestroy(): void {
+    this.buscadorSubject$.next()
+    this.buscadorSubject$.complete()
   }
   
 }
