@@ -8,7 +8,7 @@
 <section class="cards" *ngIf="request?.results?.length; else nodata">
     
     <ng-container *ngFor="let item of request?.results" class="card">
-        <app-card [personaje]="item" [lugar]="'normal'" (personajeEliminar)="hola($event)"></app-card>
+        <app-card [personaje]="item" [lugar]="'normal'" (personajeEliminar)="hola2($event)"></app-card>
     </ng-container>
 </section>
 <div class="botones">

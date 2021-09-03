@@ -3,6 +3,7 @@ import { IPersonaje } from 'src/app/interfaces';
 import { InicioService } from 'src/app/services/inicio.service';
 
 import { ToastrService } from 'ngx-toastr';
+import { CrudService } from 'src/app/services/crud.service';
 
 @Component({
   selector: 'app-card',
@@ -14,7 +15,10 @@ export class CardComponent implements OnInit {
   @Input() personaje!: IPersonaje;
   @Input() lugar!: string;
   @Output() personajeEliminar = new EventEmitter<IPersonaje>();
-  constructor(private inicioService: InicioService, private toastr: ToastrService) { }
+  constructor(
+    private toastr: ToastrService,
+    private dos: CrudService
+  ) { }
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit(): void {
@@ -22,14 +26,14 @@ export class CardComponent implements OnInit {
     // console.log(svg[0].setAttribute('fill', '#000')   );
   }
 
-  guardar() {
-    this.inicioService.personaje = this.personaje;
+  guardar2() {
     this.personaje.favorito = true;
-    // console.log(this.inicioService.personajesGetter());
+    this.dos.personajeSet = this.personaje;
     this.success();
-  }
 
-  eliminar() {
+  }
+  
+  eliminar2() {
     this.personaje.favorito = false;
     this.personajeEliminar.next(this.personaje);
     this.toastr.show('se borro de favoritos', `se borro a ${this.personaje.name}`);
@@ -37,12 +41,6 @@ export class CardComponent implements OnInit {
 
   success() {
     this.toastr.success('', `se agrego a ${this.personaje.name}`);
-  }
-  
-  eliminarDentro() {
-    this.personaje.favorito = !this.personaje.favorito;
-    this.inicioService.eliminar(this.personaje);
-    this.toastr.success('', `se elimino a ${this.personaje.name}`);
   }
 
 }
