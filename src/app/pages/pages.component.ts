@@ -1,6 +1,5 @@
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 import { Component, OnInit } from '@angular/core';
-import { InicioService } from '../services/inicio.service';
 
 @Component({
   templateUrl: './pages.component.html',
@@ -8,13 +7,9 @@ import { InicioService } from '../services/inicio.service';
 })
 export class PagesComponent implements OnInit {
 
-  constructor(public inicioServices: InicioService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    console.log(this.inicioServices.dinero);
-    this.inicioServices.dinero ??= 800;
-    console.log(this.inicioServices.dinero ??= 800);
-    console.log(this.inicioServices.dinero);
   }
 
 }

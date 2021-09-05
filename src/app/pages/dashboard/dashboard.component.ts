@@ -25,11 +25,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.paginacion();
+    // this.paginacion();
     this.buscador.valueChanges
       .pipe(
         debounceTime(500),
+        startWith(''),
         tap(data => console.log(data)),
+        takeUntil(this.buscadorSubject),
         distinctUntilChanged(),
         switchMap((dt) => this.inicioService.buscar(dt)),
         map(data => {
@@ -41,7 +43,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
           }
         }),
         catchError(err => of(err)),
-        takeUntil(this.buscadorSubject)
       ).subscribe(r => this.request = r);
 
   }
