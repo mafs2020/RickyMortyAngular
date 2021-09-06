@@ -1,9 +1,13 @@
 <div  class="buscador">
-    <input [formControl]="buscador" type="text" name="buscador" id="buscador">
+    <input [formControl]="buscador" type="text" name="buscador" id="buscador" placeholder="personaje">
     <!-- <input [(ngModel)]="dd" (keyup)="escribe()" type="text" name="buscador" id="buscador"> -->
     
     <!-- <input #inputt (input)="conseguir(inputt.value)" id="search-box" type="text" name="buscador"> -->
     <!-- <input [(ngModel)]="dd" (ngModelChange)="escribe()" id="search-box2" type="text" name="buscador"> -->
+    <div class="nav">
+        <a routerLink="/inicio">inicio</a>
+        <a routerLink="/inicio/favorito">Favoritos</a>
+    </div>
 </div>
 <section class="cards" *ngIf="request?.results?.length; else nodata">
     

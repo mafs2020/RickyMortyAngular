@@ -18,10 +18,7 @@ export class FavoritosComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const todos = this.dos.personajesGetter;
-    this.limite = Math.ceil(todos.length /20);
-    console.log( this.limite );
-    this.nPaginacion(this.paginacion);
+    this.paginarBotones();
   }
 
   nPaginacion(num: number) {
@@ -34,6 +31,15 @@ export class FavoritosComponent implements OnInit {
   hola2(per: IPersonaje){
     this.personajes = this.personajes.filter(p => p.id != per.id);
     this.dos.eliminarPersonaje(per);
+    const todos = this.dos.personajesGetter;
+    this.limite = Math.ceil(todos.length /20);
+  }
+
+  paginarBotones() {
+    const todos = this.dos.personajesGetter;
+    this.limite = Math.ceil(todos.length /20);
+    console.log( this.limite );
+    this.nPaginacion(this.paginacion);
   }
 
 }

@@ -1,4 +1,8 @@
 <ng-container *ngIf="personajes.length !== 0; else nodata">
+    <div class="nav">
+        <a routerLink="/inicio">inicio</a>
+        <a routerLink="/inicio/favorito">Favoritos</a>
+    </div>
     <div class="cards">
         <app-card *ngFor="let item of personajes" [personaje]="item" [lugar]="'favorito'" (personajeEliminar)="hola2($event)"></app-card>
     </div>

@@ -38,3 +38,23 @@ input[type="button"]{
         cursor: not-allowed;
     }
 }
+
+.nav{
+    text-align: center;
+    padding: 1rem;
+}
+.nav a{
+    color: #fff;
+    margin-right: 1rem;
+    font-size: 2rem;
+    display: inline-block;
+    text-decoration: none;
+    text-transform: capitalize;
+    &:hover{
+        border-bottom: 1px solid #fff;
+    }
+}
+
+.nav a:last-child{
+    border-bottom: 1px solid #fff;
+}
