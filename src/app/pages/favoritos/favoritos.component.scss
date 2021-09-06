@@ -15,8 +15,11 @@
 }
 
 .marge{
-    margin: auto;
-    padding: auto;
+    padding: 1rem;
+    text-align: center;
+}
+.marge input:first-child{
+    margin-right: 2rem;
 }
 
 input[type="button"]{
