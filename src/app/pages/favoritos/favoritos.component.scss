@@ -61,3 +61,30 @@ input[type="button"]{
 .nav a:last-child{
     border-bottom: 1px solid #fff;
 }
+
+.cards div p{
+    font-size: 3rem;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.cards div a input{
+    background-color: darkcyan;
+    border-radius: 50px;
+    color: #fff;
+    padding: 1rem 4rem;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+    &:hover{
+        background-color: #fff;
+        color: darkcyan;
+        // border: 2px solid darkcyan;
+
+    }
+}
+.cards div a{
+    text-align: center;
+    display: block;
+    margin: 0.5rem;
+}

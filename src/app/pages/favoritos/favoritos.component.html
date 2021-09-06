@@ -8,7 +8,7 @@
     </div>
     <div class="marge todo">
         <input [disabled]="paginacion === 0" (click)="nPaginacion(-1)" type="button" value="regresar" />
-        <input [disabled]="paginacion === (limite!-1)" (click)="nPaginacion(1)" type="button" value="siguiente" />
+        <input [disabled]="paginacion === ((limite!-1) <= 0 ? 0 : (limite!-1))" (click)="nPaginacion(1)" type="button" value="siguiente" />
     </div>
 </ng-container>
 
@@ -18,7 +18,7 @@
         <div>
             <p>no hay datos</p>
             <a routerLink="/inicio">
-                <input type="button" value="Regresar">
+                <input type="button" value="Inicio">
             </a>
             <div class="marge todo">
                 <input [disabled]="paginacion === 0" (click)="nPaginacion(-1)" type="button" value="regresar" />
