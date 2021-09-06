@@ -9,10 +9,6 @@
     min-width: 100vw;
     min-height: 100vh;
 }
-.d{
-    min-width: 100vw;
-    min-height: 100vh;
-}
 
 .marge{
     padding: 1rem;
@@ -87,4 +83,11 @@ input[type="button"]{
     text-align: center;
     display: block;
     margin: 0.5rem;
+}
+.cards div p{
+    text-align: center;
+}
+
+.w40 {
+    width: 40%;
 }
