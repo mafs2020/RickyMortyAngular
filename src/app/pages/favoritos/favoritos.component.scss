@@ -65,7 +65,7 @@ input[type="button"]{
 }
 
 .cards div a input{
-    background-color: darkcyan;
+    background-color: #171717;
     border-radius: 50px;
     color: #fff;
     padding: 1rem 4rem;
@@ -74,7 +74,7 @@ input[type="button"]{
     border: 1px solid transparent;
     &:hover{
         background-color: #fff;
-        color: darkcyan;
+        color: #171717;
         // border: 2px solid darkcyan;
 
     }
