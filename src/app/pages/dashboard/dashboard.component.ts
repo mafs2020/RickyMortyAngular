@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { EMPTY, Observable, of, Subject, throwError } from 'rxjs';
-import { catchError, combineAll, concatAll, concatMap, debounceTime, distinctUntilChanged, map, mergeMap, startWith, switchMap, takeUntil, tap } from 'rxjs/operators';
+import { of, Subject } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, map, startWith, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { IPersonaje, IRequest } from 'src/app/interfaces';
 import { CrudService } from 'src/app/services/crud.service';
 
