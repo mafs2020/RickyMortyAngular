@@ -17,6 +17,7 @@ export class InicioService {
   url = "https://rickandmortyapi.com/api/character";
   info!: IInfo;
   personjesFvitos: IPersonaje[] = [];
+  subir: string = '';
 
   constructor(
     private http: HttpClient,
