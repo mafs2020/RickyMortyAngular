@@ -27,20 +27,17 @@ export class FavoritosComponent implements OnInit {
   }
 
   nPaginacion(num: number) {
-<<<<<<< HEAD
     this.paginacion = this.paginacion + num ?? 0;
     try {
       this.personajes = this.inicioService.personajesGetter( this.paginacion );
     } catch (error) {
       console.log('error :>> ', error);
     }
-=======
     this.paginacion = this.paginacion + num;
     if(this.paginacion < 0){
       this.paginacion = 0;
     }
     this.personajes = this.inicioService.personajesGetter( this.paginacion );
->>>>>>> ssr
     console.log(this.paginacion);
     console.log('this.limite :>> ', this.limite);
   }
@@ -54,19 +51,16 @@ export class FavoritosComponent implements OnInit {
 
   paginarBotones() {
     const todos = this.dos.personajesGetter;
-<<<<<<< HEAD
-    if( todos ) {
-      this.limite = Math.ceil(todos.length /20);
-      console.log( this.limite );
-      this.nPaginacion(this.paginacion);
-    } else {
-      this.personajes = [];
-    }
-=======
+    // if( todos ) {
+    //   this.limite = Math.ceil(todos.length /20);
+    //   console.log( this.limite );
+    //   this.nPaginacion(this.paginacion);
+    // } else {
+    //   this.personajes = [];
+    // }
     this.limite = Math.ceil(todos.length /20) ?? 0;
     console.log( this.limite );
     this.nPaginacion(this.paginacion);
->>>>>>> ssr
   }
 
 }
