@@ -37,9 +37,13 @@ export class FavoritosComponent implements OnInit {
 
   paginarBotones() {
     const todos = this.dos.personajesGetter;
-    this.limite = Math.ceil(todos.length /20);
-    console.log( this.limite );
-    this.nPaginacion(this.paginacion);
+    if( todos ) {
+      this.limite = Math.ceil(todos.length /20);
+      console.log( this.limite );
+      this.nPaginacion(this.paginacion);
+    } else {
+      this.personajes = [];
+    }
   }
 
 }
