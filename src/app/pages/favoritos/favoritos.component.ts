@@ -22,8 +22,12 @@ export class FavoritosComponent implements OnInit {
   }
 
   nPaginacion(num: number) {
-    this.paginacion = this.paginacion + num;
-    this.personajes = this.inicioService.personajesGetter( this.paginacion );
+    this.paginacion = this.paginacion + num ?? 0;
+    try {
+      this.personajes = this.inicioService.personajesGetter( this.paginacion );
+    } catch (error) {
+      console.log('error :>> ', error);
+    }
     console.log(this.paginacion);
     console.log( this.limite );
   }
