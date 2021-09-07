@@ -27,22 +27,16 @@ export class FavoritosComponent implements OnInit {
   }
 
   nPaginacion(num: number) {
-    this.paginacion = this.paginacion + num ?? 0;
+    this.paginacion = this.paginacion + num;
     try {
       this.personajes = this.inicioService.personajesGetter( this.paginacion );
     } catch (error) {
       console.log('error :>> ', error);
     }
-    this.paginacion = this.paginacion + num;
-    if(this.paginacion < 0){
-      this.paginacion = 0;
-    }
-    this.personajes = this.inicioService.personajesGetter( this.paginacion );
-    console.log(this.paginacion);
     console.log('this.limite :>> ', this.limite);
   }
 
-  hola2(per: IPersonaje){
+  hola2(per: IPersonaje): void {
     this.personajes = this.personajes.filter(p => p.id != per.id);
     this.dos.eliminarPersonaje(per);
     const todos = this.dos.personajesGetter;
@@ -50,16 +44,8 @@ export class FavoritosComponent implements OnInit {
   }
 
   paginarBotones() {
-    const todos = this.dos.personajesGetter;
-    // if( todos ) {
-    //   this.limite = Math.ceil(todos.length /20);
-    //   console.log( this.limite );
-    //   this.nPaginacion(this.paginacion);
-    // } else {
-    //   this.personajes = [];
-    // }
-    this.limite = Math.ceil(todos.length /20) ?? 0;
-    console.log( this.limite );
+    const todos = this.dos.personajesGetter ?? [];
+    this.limite = Math.ceil(todos.length / 20);
     this.nPaginacion(this.paginacion);
   }
 
