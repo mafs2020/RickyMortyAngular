@@ -7,7 +7,7 @@
     margin-top: 1rem;
     background-color: #f2f2f2;
     border-radius: 0.8rem;
-    text-align: center;
+    text-align: justify;
     overflow: hidden;
     &:hover{
         cursor: pointer;
@@ -18,10 +18,14 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    font-size: 1rem;
+    text-transform: capitalize;
+    margin-bottom: 0.7rem;
 }
 
 .card div{
-    padding: 10px;
+    // padding: 10px;
+    margin: 1rem;
 }
 
 .card img{
@@ -39,7 +43,6 @@
     }
 }
 
-.ff,
 .card svg {
     position: absolute;
     width: 2rem;
@@ -47,9 +50,11 @@
     right: 1rem;
 }
 
+
 .botones{
     // background-color: #11324D;
     height: 100%;
+    // width: 100%;
 }
 
 .card input {
@@ -59,7 +64,7 @@
     color: darkred;
     border: 1px solid darkred;
     border-radius: 0.8rem;
-    // display: block;
+    width: 100%;
     text-transform: capitalize;
     &:hover {
         background-color: darkred;
@@ -69,12 +74,42 @@
     }
 }
 
-.color{
-    color: dodgerblue;
+.card .estado {
+    position: absolute;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    top: 1rem;
+    left: 1rem;
+    border: 1px solid transparent;
+    width: 50%;
+    &:hover {
+    color: #fff;
+        border: 1px solid transparent;
+    }
 }
-.colorA{
-    color: orange;
+
+.card .estadoVivo{
+background-color: #005792;
 }
-.colorR{
-    color: darkred;
+
+.card .estadoMuerto{
+background-color: #1B1A17;
+}
+
+.card .estadoDesconocido{
+background-color: #EDEDED;
+color: #444444;
+}
+// .card div p{
+
+// }
+
+.negritas::first-letter{
+    text-transform: uppercase;
+}
+.negritas{
+    font-size: 0.8rem;
+    font-weight: 600;
+    // letter-spacing: 2px;
 }

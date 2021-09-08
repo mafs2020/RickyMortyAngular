@@ -43,4 +43,8 @@ export class CardComponent implements OnInit {
     this.toastr.success('', `se agrego a ${this.personaje.name}`);
   }
 
+  gg(){
+    console.log('gg');
+  }
+
 }
