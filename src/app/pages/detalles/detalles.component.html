@@ -20,7 +20,8 @@
         <!-- <option *ngFor="let item of d.episode" [ngValue]="item">{{  item }}</option> -->
         <option *ngFor="let item of d.episode" [value]="item" >{{  item }}</option>
     </select>
-    <div *ngIf=" episodio$ | async as episodios">
-        <!-- <p style="color: aliceblue;"> {{ episodios | json }} </p> -->
+    <div>
+        <img *ngFor="let item of episodio$ | async;" [src]="item" [alt]="item" />
     </div>
+    
 </section>

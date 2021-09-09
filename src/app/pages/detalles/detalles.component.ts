@@ -13,11 +13,11 @@ import { InicioService } from 'src/app/services/inicio.service';
 })
 export class DetallesComponent implements OnInit, OnDestroy {
   data$?: Observable<any>;
-  episodio$?: Observable<any>;
+  episodio?: Subject<string> = new Subject();
+  episodio$ = this.episodio?.asObservable();
   opcion: string = '';
   select: FormControl = new FormControl();
   finalizar: Subject<never> = new Subject();
-  numeros = '/\d+/g';
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -53,12 +53,12 @@ export class DetallesComponent implements OnInit, OnDestroy {
         });
       })),
       tap((d: IEpisodio) => forkJoin(d.observbales).pipe(
-        tap(f => console.log(f)),
+        map((f: any) => f.map((per:any) => per.image)),
         catchError(err => EMPTY)
-      ).subscribe((g) => console.log('g :>> ', g))),
+      ).subscribe((g) =>  this.episodio?.next(g) )),
       tap(f => console.log(f)),
       catchError(err => EMPTY)
-    ).subscribe();
+    ).subscribe(d=> console.log(d));
   }
 
   ngOnDestroy(): void {
