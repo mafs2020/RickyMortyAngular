@@ -1,0 +1,39 @@
+
+section{
+    min-height: 100vh;
+    min-width: 100vw;
+    padding: 2rem;
+}
+
+.d-flex{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+    
+}
+
+section .d-flex div p{
+    margin-bottom: 0.7rem;
+    font-weight: 600;
+    
+}
+.mitad{
+    width: 50%;
+    color: #000;
+}
+
+img{
+    border-radius: 0.8rem;
+    object-fit: cover;
+}
+
+section select option {
+    color: #000;
+    &:hover{
+        cursor: pointer;
+    }
+}

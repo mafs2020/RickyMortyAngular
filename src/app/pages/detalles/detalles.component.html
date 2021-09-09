@@ -1,0 +1,26 @@
+<section *ngIf="data$ | async as d">
+    <div class="d-flex">
+        <div class="mitad">
+            <p>id {{  d.id }}</p>
+            <p>nombre {{  d.name }}</p>
+            <p>estado {{  d.status }}</p>
+            <p>especies {{  d.species }}</p>
+            <p>tipo {{  d.type }}</p>
+            <p>genero {{  d.gender }}</p>
+            <p>origen {{  d.origin.name }}</p>
+            <p>location {{  d.location.name }}</p>
+            <p>url {{  d.url }}</p>
+        </div>
+        <img [src]="d.image" [alt]="d.name">
+    </div>
+    <p>episodios donde aparecio:</p>
+    <select [formControl]="select" name="d" id="">
+        <option [ngValue]="null" disabled selected>Selecciona un Capitulo</option>
+        <!-- value y ngValue es lo mismo solo que con ngValue puede ser tambien un objeto  -->
+        <!-- <option *ngFor="let item of d.episode" [ngValue]="item">{{  item }}</option> -->
+        <option *ngFor="let item of d.episode" [value]="item" >{{  item }}</option>
+    </select>
+    <div *ngIf=" episodio$ | async as episodios">
+        <!-- <p style="color: aliceblue;"> {{ episodios | json }} </p> -->
+    </div>
+</section>
