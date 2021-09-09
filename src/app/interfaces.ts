@@ -1,3 +1,5 @@
+import { Observable } from "rxjs";
+
 export interface IRequest {
     info: IInfo;
     results: IPersonaje[]
@@ -20,4 +22,16 @@ export interface IInfo {
     pages: number;
     next: string | null;
     prev: string | null;
+}
+
+export interface IEpisodio {
+
+    id: number;
+    name: string;
+    air_date: string;
+    episode: string;
+    characters: string[];
+    url: string;
+    created: string;
+    observbales?: Observable<any>[];
 }

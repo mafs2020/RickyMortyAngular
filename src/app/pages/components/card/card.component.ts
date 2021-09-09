@@ -4,6 +4,7 @@ import { InicioService } from 'src/app/services/inicio.service';
 
 import { ToastrService } from 'ngx-toastr';
 import { CrudService } from 'src/app/services/crud.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -17,7 +18,8 @@ export class CardComponent implements OnInit {
   @Output() personajeEliminar = new EventEmitter<IPersonaje>();
   constructor(
     private toastr: ToastrService,
-    private dos: CrudService
+    private dos: CrudService,
+    private router: Router
   ) { }
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
@@ -43,8 +45,8 @@ export class CardComponent implements OnInit {
     this.toastr.success('', `se agrego a ${this.personaje.name}`);
   }
 
-  gg(){
-    console.log('gg');
+  detalles(){
+    this.router.navigate(['/inicio/detalle/', this.personaje.id]);
   }
 
 }

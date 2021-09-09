@@ -15,6 +15,7 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CardComponent } from './components/card/card.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
+import { DetallesComponent } from './detalles/detalles.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { FavoritosComponent } from './favoritos/favoritos.component';
     DashboardComponent,
     CardComponent,
     FavoritosComponent,
-    GeneroEsPipe
+    GeneroEsPipe,
+    DetallesComponent
   ],
   imports: [
     CommonModule,

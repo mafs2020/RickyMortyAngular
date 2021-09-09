@@ -71,6 +71,16 @@ export class InicioService {
     return d;
   }
 
+  getsingleCharacter(id:string|number): Observable<any>{
+    return this.http.get<any>(`https://rickandmortyapi.com/api/character/${id}`)
+      .pipe(catchError(err => of(err)));
+  }
+
+  getEpisodios(url: string): Observable<any>{
+    return this.http.get<any>(`${url}`)
+      .pipe(catchError(err => of(err)));
+  }
+
 }
 
 
