@@ -1,4 +1,5 @@
-<section *ngIf="data$ | async as d">
+<section *ngIf="data$ | async as d; else nodta;">
+    <input class="botonR" routerLink="/inicio" type="button" value="Inicio">
     <div class="d-flex">
         <div class="mitad">
             <p>nombre </p>
@@ -7,10 +8,8 @@
             <p>  {{  d.status }}</p>
             <p>especies </p>
             <p>  {{  d.species }}</p>
-            <p>tipo </p>
-            <p>  {{  d.type }}</p>
             <p>genero </p>
-            <p>  {{  d.gender }}</p>
+            <p>  {{  d.gender | generoEs }}</p>
             <p>origen</p> 
             <p>  {{  d.origin.name }}</p>
             <p>location </p>
@@ -20,7 +19,7 @@
         </div>
         <img [src]="d.image" [alt]="d.name">
     </div>
-    <p>episodios donde aparecio:</p>
+    <!-- <p>episodios donde aparecio:</p> -->
     <select [formControl]="select" name="d" id="">
         <option [ngValue]="null" disabled selected>Selecciona un Capitulo</option>
         <!-- value y ngValue es lo mismo solo que con ngValue puede ser tambien un objeto  -->
@@ -29,9 +28,9 @@
     </select>
     <div *ngIf="episodioNgModel" class="tarjeta">
         <p *ngIf="episodioNgModel?.name">Nombre del episodio: {{ episodioNgModel?.name }} </p>
-        <p *ngIf="episodioNgModel?.name">Fecha de lanzamiento: {{ episodioNgModel?.air_date }} </p>
+        <p *ngIf="episodioNgModel?.name">Fecha de creacion: {{ episodioNgModel?.air_date }} </p>
         <p *ngIf="episodioNgModel?.name">Temporada: {{ episodioNgModel?.episode }} </p>
-        <p *ngIf="episodioNgModel?.name">Fecha de creacion: {{ episodioNgModel?.created | date }} </p>
+        <p *ngIf="episodioNgModel?.name">Fecha de lanzamiento: {{ episodioNgModel?.created | date }} </p>
     </div>
     <p *ngIf="episodioNgModel?.name" class="g">
         Personajes que aparecieron:
@@ -42,3 +41,7 @@
     </div>
     
 </section>
+
+<ng-template #nodta>
+    <input class="botonR" routerLink="/inicio" type="button" value="Inicio">
+</ng-template>
