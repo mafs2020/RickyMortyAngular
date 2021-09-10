@@ -16,6 +16,7 @@ export class DetallesComponent implements OnInit, OnDestroy {
   episodio?: Subject<string> = new Subject();
   episodio$ = this.episodio?.asObservable();
   opcion: string = '';
+  episodioNgModel?: IEpisodio;
   select: FormControl = new FormControl();
   finalizar: Subject<never> = new Subject();
   constructor(
@@ -56,9 +57,13 @@ export class DetallesComponent implements OnInit, OnDestroy {
         map((f: any) => f.map((per:any) => per.image)),
         catchError(err => EMPTY)
       ).subscribe((g) =>  this.episodio?.next(g) )),
-      tap(f => console.log(f)),
+      // tap(f => console.log(f)),
       catchError(err => EMPTY)
-    ).subscribe(d=> console.log(d));
+    ).subscribe(d=> {
+      const { observbales, ...resto } = d;
+      this.episodioNgModel = resto;
+    });
+    // ).subscribe(d=> this.episodioNgModel = d);
   }
 
   ngOnDestroy(): void {

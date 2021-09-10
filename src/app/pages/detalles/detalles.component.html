@@ -1,15 +1,22 @@
 <section *ngIf="data$ | async as d">
     <div class="d-flex">
         <div class="mitad">
-            <p>id {{  d.id }}</p>
-            <p>nombre {{  d.name }}</p>
-            <p>estado {{  d.status }}</p>
-            <p>especies {{  d.species }}</p>
-            <p>tipo {{  d.type }}</p>
-            <p>genero {{  d.gender }}</p>
-            <p>origen {{  d.origin.name }}</p>
-            <p>location {{  d.location.name }}</p>
-            <p>url {{  d.url }}</p>
+            <p>nombre </p>
+            <p>  {{  d.name }}</p>
+            <p>estado </p>
+            <p>  {{  d.status }}</p>
+            <p>especies </p>
+            <p>  {{  d.species }}</p>
+            <p>tipo </p>
+            <p>  {{  d.type }}</p>
+            <p>genero </p>
+            <p>  {{  d.gender }}</p>
+            <p>origen</p> 
+            <p>  {{  d.origin.name }}</p>
+            <p>location </p>
+            <p>  {{  d.location.name }}</p>
+            <p>url </p>
+            <p>  {{  d.url }}</p>
         </div>
         <img [src]="d.image" [alt]="d.name">
     </div>
@@ -20,8 +27,18 @@
         <!-- <option *ngFor="let item of d.episode" [ngValue]="item">{{  item }}</option> -->
         <option *ngFor="let item of d.episode" [value]="item" >{{  item }}</option>
     </select>
-    <div>
-        <img *ngFor="let item of episodio$ | async;" [src]="item" [alt]="item" />
+    <div *ngIf="episodioNgModel" class="tarjeta">
+        <p *ngIf="episodioNgModel?.name">Nombre del episodio: {{ episodioNgModel?.name }} </p>
+        <p *ngIf="episodioNgModel?.name">Fecha de lanzamiento: {{ episodioNgModel?.air_date }} </p>
+        <p *ngIf="episodioNgModel?.name">Temporada: {{ episodioNgModel?.episode }} </p>
+        <p *ngIf="episodioNgModel?.name">Fecha de creacion: {{ episodioNgModel?.created | date }} </p>
+    </div>
+    <p *ngIf="episodioNgModel?.name" class="g">
+        Personajes que aparecieron:
+    </p>
+    <div *ngIf="episodio$ | async as episodios" class="tarjetas">
+        <!-- <img style="width: 135vw; height: 500px;" src="" alt=""> -->
+        <img class="posicion" *ngFor="let item of episodios" [src]="item" [alt]="item" />
     </div>
     
 </section>
