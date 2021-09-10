@@ -2,22 +2,24 @@
     <input class="botonR" routerLink="/inicio" type="button" value="Inicio">
     <div class="d-flex">
         <div class="mitad">
-            <p>nombre </p>
+            <p>nombre: </p>
             <p>  {{  d.name }}</p>
-            <p>estado </p>
+            <p>Estado: </p>
             <p>  {{  d.status }}</p>
-            <p>especies </p>
+            <p>Especies: </p>
             <p>  {{  d.species }}</p>
-            <p>genero </p>
+            <p>genero: </p>
             <p>  {{  d.gender | generoEs }}</p>
-            <p>origen</p> 
+            <p>origen: </p> 
             <p>  {{  d.origin.name }}</p>
-            <p>location </p>
+            <p>location: </p>
             <p>  {{  d.location.name }}</p>
-            <p>url </p>
-            <p>  {{  d.url }}</p>
+            <!-- <p>url </p>
+            <p>  {{  d.url }}</p> -->
         </div>
-        <img [src]="d.image" [alt]="d.name">
+        <div>
+            <img [src]="d.image" [alt]="d.name">
+        </div>
     </div>
     <!-- <p>episodios donde aparecio:</p> -->
     <select [formControl]="select" name="d" id="">
