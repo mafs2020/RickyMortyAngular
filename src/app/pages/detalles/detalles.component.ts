@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { concat, EMPTY, forkJoin, from, Observable, of, Subject, zip } from 'rxjs';
-import { catchError, combineAll, combineLatest, map, mergeAll, mergeMap, switchMap, takeUntil, tap } from 'rxjs/operators';
-import { IEpisodio, IPersonaje } from 'src/app/interfaces';
+import { ActivatedRoute, Router } from '@angular/router';
+import { EMPTY, forkJoin, Observable, Subject } from 'rxjs';
+import { catchError, map, mergeMap, switchMap, takeUntil, tap } from 'rxjs/operators';
+import { IEpisodio } from 'src/app/interfaces';
 import { InicioService } from 'src/app/services/inicio.service';
 
 @Component({
