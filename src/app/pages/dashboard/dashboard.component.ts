@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
+import { Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterEvent } from '@angular/router';
 import { of, Subject } from 'rxjs';
 import { catchError, debounceTime, delay, distinctUntilChanged, filter, map, startWith, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { IPersonaje, IRequest } from 'src/app/interfaces';
@@ -20,20 +20,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
   buscadorSubject$:  Subject<string> = new Subject();
   buscadorSubject = this.buscadorSubject$.asObservable();
   dd: string = '';
-  loading?: boolean;
+  loading: boolean = true;
   constructor(
     private inicioService: InicioService,
     private dos: CrudService,
     private router: Router
-  ) { }
+  ) {
+    this.router.events.pipe(delay(2000))
+    .subscribe((e: Event) => this.checkEvents(e));
+  }
 
   ngOnInit(): void {
     // this.paginacion();
-    this.router.events.pipe(
-      delay(2000),
-      filter(e => e instanceof NavigationEnd)
-    )
-    .subscribe(e => this.checkEvents);
     this.buscador.valueChanges
       .pipe(
         debounceTime(500),
@@ -83,6 +81,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   checkEvents(routerEvent: Event): void {
+    console.log(routerEvent);
     if (routerEvent instanceof NavigationStart) {
       this.loading = true;
     }
