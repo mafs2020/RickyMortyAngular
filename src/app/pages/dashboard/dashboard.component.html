@@ -1,25 +1,29 @@
-<div  class="buscador">
-    <input [formControl]="buscador" type="text" name="buscador" id="buscador" placeholder="personaje">
-    <!-- <input [(ngModel)]="dd" (keyup)="escribe()" type="text" name="buscador" id="buscador"> -->
-    
-    <!-- <input #inputt (input)="conseguir(inputt.value)" id="search-box" type="text" name="buscador"> -->
-    <!-- <input [(ngModel)]="dd" (ngModelChange)="escribe()" id="search-box2" type="text" name="buscador"> -->
-    <div class="nav">
-        <a routerLink="/inicio">inicio</a>
-        <a routerLink="/inicio/favorito">Favoritos</a>
+<div *ngIf="loading" class="loader"></div>
+<section *ngIf="!loading">
+    <form>
+        <div class="buscador">
+            <input [formControl]="buscador" type="text" name="buscador" id="buscador" placeholder="personaje">
+            <!-- <input [(ngModel)]="dd" (keyup)="escribe()" type="text" name="buscador" id="buscador"> -->
+            
+            <!-- <input #inputt (input)="conseguir(inputt.value)" id="search-box" type="text" name="buscador"> -->
+            <!-- <input [(ngModel)]="dd" (ngModelChange)="escribe()" id="search-box2" type="text" name="buscador"> -->
+            <div class="nav">
+                <a routerLink="/inicio">inicio</a>
+                <a routerLink="/inicio/favorito">Favoritos</a>
+            </div>
+        </div>
+    </form>
+    <div class="cards" *ngIf="request?.results?.length; else nodata">
+        <ng-container *ngFor="let item of request?.results" class="card">
+            <app-card [personaje]="item" [lugar]="'normal'" (personajeEliminar)="hola2($event)"></app-card>
+        </ng-container>
     </div>
-</div>
-<section class="cards" *ngIf="request?.results?.length; else nodata">
+    <div class="botones">
+        <input [disabled]="!request?.info?.prev" (click)="paginacion(true)" type="button" value="regresar" />
+        <input [disabled]="!request?.info?.next" (click)="paginacion()" type="button" value="siguiente" />
+    </div>
     
-    <ng-container *ngFor="let item of request?.results" class="card">
-        <app-card [personaje]="item" [lugar]="'normal'" (personajeEliminar)="hola2($event)"></app-card>
-    </ng-container>
+    <ng-template class="cards" #nodata>
+        <p>no hay datos</p>
+    </ng-template>
 </section>
-<div class="botones">
-    <input [disabled]="!request?.info?.prev" (click)="paginacion(true)" type="button" value="regresar" />
-    <input [disabled]="!request?.info?.next" (click)="paginacion()" type="button" value="siguiente" />
-</div>
-
-<ng-template class="cards" #nodata>
-    <p>no hay datos</p>
-</ng-template>
