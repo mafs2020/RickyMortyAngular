@@ -29,6 +29,10 @@ section .d-flex div p{
 .mitad{
     width: 50%;
 }
+.mitad p{
+    // animation: mover 1s;
+    animation: imgopacity 2s ease-in-out;
+}
 .mitad p:nth-child(even){
     background-color: crimson;
     padding: 0.3rem;
@@ -42,6 +46,7 @@ img{
     height: 400px;
     box-shadow: 5px 16px 5px solid;
     margin: 4px 0;
+    animation: imgopacity 2s ease-in-out;
 }
 
 section select option {
@@ -153,5 +158,24 @@ select {
     }
     .tarjeta{
         width: 90%;
+    }
+}
+
+// tranform y opcity
+@keyframes imgopacity {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@keyframes mover {
+    from{
+        transform: translate(-100%, 0);
+        // background: chartreuse;
+    }
+    to{
+        transform: translate(0, 0);
     }
 }
