@@ -26,8 +26,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private dos: CrudService,
     private router: Router
   ) {
-    this.router.events.pipe(delay(2000))
-    .subscribe((e: Event) => this.checkEvents(e));
+    this.router.events.pipe(delay(1000))
+    .subscribe((e: Event) => this.checkEvents(e as RouterEvent));
   }
 
   ngOnInit(): void {
@@ -80,8 +80,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.buscadorSubject$.complete()
   }
 
-  checkEvents(routerEvent: Event): void {
-    console.log(routerEvent);
+  checkEvents(routerEvent: RouterEvent): void {
+    // console.log(routerEvent);
     if (routerEvent instanceof NavigationStart) {
       this.loading = true;
     }
