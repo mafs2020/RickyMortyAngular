@@ -1,3 +1,40 @@
 <p>auth works!</p>
 {{ this.inicioServices.dinero }}
 <a routerLink="../inicio">inicio</a>
+
+
+<ng-template #template1>  
+    <p>este es nuestro template que se va a mostrar en el div *ngTemplateOutlet="myTemplateRef"</p>
+    hola mundo
+</ng-template>
+
+<ng-container *ngTemplateOutlet="template1">This text is not displayedjjjj</ng-container>
+
+<hr />
+
+<div *ngTemplateOutlet="template1"></div>
+
+<hr />
+
+<ng-template [ngTemplateOutlet]="template1">
+    <div></div>
+</ng-template>
+
+
+
+
+
+<ng-template let-name="nameVar" let-message="messageVar" #template3>  
+    <p>Dear {{name}} , {{message}} </p>
+</ng-template>
+<ng-container [ngTemplateOutlet]="template3" 
+    [ngTemplateOutletContext] ="{nameVar:'Guest',messageVar:'Welcome to our site'}">
+</ng-container> 
+
+
+<ng-template let-person="person"  #template4>  
+    <p>Dear {{person.name}} , {{person.message}} </p>
+</ng-template>
+<ng-container [ngTemplateOutlet]="template4"
+    [ngTemplateOutletContext] ="{ person:{name:'Guest',message:'Welcome to our site'} }">
+</ng-container>

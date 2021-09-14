@@ -6,7 +6,8 @@ import { InicioService } from '../services/inicio.service';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
-
+  nameVar = 'ggggggg'
+  messageVar = 'mmmmmmmm'
   constructor(public inicioServices: InicioService ) { }
 
   ngOnInit(): void {
