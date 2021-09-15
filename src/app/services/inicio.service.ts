@@ -43,7 +43,6 @@ export class InicioService {
     const l = localStorage.getItem(this.personajes) as string;
     const arreglos = JSON.parse(l) as IPersonaje[];
     let f = arreglos.slice((desde*20),(desde*20)+20);
-    
     return arreglos.length > 0 ? f : [];
   }
 
