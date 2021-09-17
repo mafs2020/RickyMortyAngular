@@ -88,11 +88,11 @@ input[type="button"]{
     text-align: center;
 }
 
-.w40 {
-    width: 100%;
-}
+// .w40 {
+//     width: 40%;
+// }
 
-@media (min-width: 360px) {
+@media (max-width: 500px) {
     .cards{
         flex-flow: column-reverse wrap;
     }
