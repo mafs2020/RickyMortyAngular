@@ -89,5 +89,39 @@ input[type="button"]{
 }
 
 .w40 {
-    width: 40%;
+    width: 100%;
+}
+
+@media (min-width: 360px) {
+    .cards{
+        flex-flow: column-reverse wrap;
+    }
+
+    .cards div p{
+        font-size: 1rem;
+    }
+    // .cards .w40 a input {
+    //     display: block;
+    //     margin: auto;
+    //     padding: 1rem;
+    //     border: none;
+    // }
+    input[type="button"]{
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .w40{
+        overflow: hidden;
+        display: block;
+        margin: auto;
+        padding: auto;
+        background: blue;
+    }
+
+    // .w40 img {
+    //     width: 100%;
+    //     object-fit: contain;
+    //     background: red;
+    // }
 }
