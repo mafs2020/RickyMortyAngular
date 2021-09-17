@@ -116,12 +116,16 @@ input[type="button"]{
         display: block;
         margin: auto;
         padding: auto;
-        background: blue;
+        // background: blue;
     }
 
-    // .w40 img {
-    //     width: 100%;
-    //     object-fit: contain;
-    //     background: red;
-    // }
+    .w40 img {
+        width: 100%;
+        object-fit: cover;
+        text-align: center;
+        margin: auto;
+        // display: block;
+        padding: auto;
+        align-items: center;
+    }
 }
