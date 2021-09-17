@@ -20,14 +20,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
   buscadorSubject$:  Subject<string> = new Subject();
   buscadorSubject = this.buscadorSubject$.asObservable();
   dd: string = '';
-  loading: boolean = true;
+  loading: boolean = false;
   constructor(
     private inicioService: InicioService,
     private dos: CrudService,
     private router: Router
   ) {
-    this.router.events.pipe(delay(1000))
-    .subscribe((e: Event) => this.checkEvents(e as RouterEvent));
+    // this.router.events.pipe(delay(1000))
+    // .subscribe((e: Event) => this.checkEvents(e as RouterEvent));
   }
 
   ngOnInit(): void {

@@ -17,15 +17,15 @@
     </ng-container>
     <div class="card-body">
         <p>nombre:</p>
-        <p class="negritas"> {{ personaje.name }} </p>
-        <p *ngIf="personaje.status === 'Alive'">estado: {{ personaje.status }}</p>
+        <p class="negritas"> {{ personaje?.name }} </p>
+        <p *ngIf="personaje?.status === 'Alive'">estado: {{ personaje?.status }}</p>
         <!-- <p *ngIf="personaje.status === 'Alive'" class="color"> {{ personaje.status }} </p> -->
-        <p *ngIf="personaje.status === 'unknown' && personaje.status">estado: {{ personaje.status }}</p>
+        <p *ngIf="personaje?.status === 'unknown' && personaje.status">estado: {{ personaje?.status }}</p>
         <!-- <p *ngIf="personaje.status === 'unknown'"  class="colorA"> {{ personaje.status }} </p> -->
-        <p *ngIf="personaje.status === 'Dead'">estado: {{ personaje.status }}</p>
+        <p *ngIf="personaje?.status === 'Dead'">estado: {{ personaje?.status }}</p>
         <!-- <p *ngIf="personaje.status === 'Dead'" class="colorR"> {{ personaje.status }} </p> -->
 
-        <p>especie: {{ personaje.species }}</p>
+        <p>especie: {{ personaje?.species }}</p>
         <!-- se utilza un pipe para cambiar el genero a español-->
         <!-- <p>genero: {{ personaje.gender | generoEs }}</p> -->
         <p>origen: {{ personaje.origin?.name }}</p>

@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 // rutas
 import { PagesRoutingModule } from './pages-routing.module';
 
-// formularios Reactivos
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+// shared
+import { SharedModule } from '../shared/shared.module';
 
 // pipe
 import { GeneroEsPipe } from './pipes/genero-es.pipe';
@@ -30,8 +30,7 @@ import { DetallesComponent } from './detalles/detalles.component';
   imports: [
     CommonModule,
     PagesRoutingModule,
-    ReactiveFormsModule,
-    FormsModule
+    SharedModule
   ]
 })
 export class PagesModule { }

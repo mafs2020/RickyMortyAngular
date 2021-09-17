@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { IInfo, IPersonaje, IRequest } from '../interfaces';
 
-import { catchError, filter, map, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of, throwError } from 'rxjs';
 import { CrudService } from './crud.service';
 

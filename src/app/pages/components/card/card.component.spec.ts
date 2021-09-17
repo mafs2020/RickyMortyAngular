@@ -15,7 +15,7 @@ describe('CardComponent Prueba', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      // declarations: [ GeneroEsPipe ],
+      declarations: [ CardComponent ],
       // providers: [ GeneroEsPipe,  ],
       imports: [
         ToastrModule.forRoot(),

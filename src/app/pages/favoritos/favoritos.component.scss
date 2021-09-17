@@ -91,3 +91,27 @@ input[type="button"]{
 .w40 {
     width: 40%;
 }
+
+@media (min-width: 360px) {
+    .cards{
+        flex-flow: column-reverse wrap;
+    }
+    .w40 img {
+        width: 100%;
+        display: block;
+        margin: auto;
+    }
+    .cards div p{
+        font-size: 1rem;
+    }
+    .cards .w40 a input {
+        display: block;
+        margin: auto;
+        padding: 1rem;
+        border: none;
+    }
+    input[type="button"]{
+        width: 100%;
+        margin-top: 1rem;
+    }
+}

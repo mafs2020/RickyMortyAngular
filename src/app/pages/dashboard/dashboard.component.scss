@@ -135,3 +135,15 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+.no-datos{
+    padding: 1rem;
+    width: 30%;
+    border-radius: 10px;
+    font-size: 2rem;
+}
+
+img{
+    display: block;
+    margin: auto;
+}
