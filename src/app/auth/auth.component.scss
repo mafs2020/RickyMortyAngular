@@ -1,0 +1,73 @@
+.container{
+    display: grid;
+    background-color: crimson;
+    // grid-template-rows: repeat(4, 1fr);
+    // va a hacer 2 rows de 1fr y luego 4fr despues OTR VEZ 1fr y 4fr
+    // es un patron
+    // grid-template-rows: repeat(2, 1fr, 4fr);
+    // grid-template-columns: repeat(4, 1fr);
+    // pr evitrte escribir TODO
+    min-height: 100vh;
+    grid: 
+    "h h h h h"
+    "b m m m m"
+    "b m m m m "
+    "f f f f f";
+    // grid: repeat(5, 1fr) / repeat(5, 1fr);
+    // es por defecto
+    // grid-auto-flow: row;
+    // si hay filas ue ya no se muestran este de abajo le va a dar un tamaño or defecto
+    // grid-auto-rows: 100px;
+    // grid-auto-flow: column;
+    // se rellenan los espacios faltntes
+    // grid-auto-flow: column|row dense;
+    // grid-auto-flow: dense;
+}
+
+.item1{
+    // de la columna uno a ANTES DE LA 3
+    // grid-column: 1 / 3;
+    // grid-column: 1 / span 4;
+    // grid-row: 1 / 3;
+    // inicio del row y column 1 2
+    // final del row y column
+    // grid-area: 1 / 1 / 3 / 3;
+    grid-area: h;
+    background-color: darkgoldenrod;
+}
+
+.item2{
+    grid-area: m;
+    background-color: darkviolet;
+}
+.item3{
+    grid-area: f;
+    background-color: dimgray;
+}
+
+.item4{
+    grid-area: b;
+}
+
+[class^="item"]{
+    // background-color: darkslateblue;
+    padding: 1rem;
+}
+
+// > hijos directos
+// ~ hermnos
+// * ue tengan
+// $ que termine
+// ^ ue empiece con
+
+// [nombre_atributo], selecciona aquellos elementos que tienen un atributo de nombre nombre_atributo.
+// [nombre_atributo=valor], selecciona los elementos que tienen un atributo llamado nombre_atributo con un valor igual a valor.
+// [nombre_atributo*=valor], selecciona los elementos que tienen un atributo llamado nombre_atributo con un valor en el que aparece la cadena valor.
+// [nombre_atributo^=valor], selecciona los elementos que tienen un atributo llamado nombre_atributo con un valor que comienza con la cadena valor.
+// [nombre_atributo$=valor], selecciona los elementos que tienen un atributo llamado nombre_atributo con un valor que termina con la cadena valor.
+// [data-*=valor], selecciona los elementos que tienen un atributo personalizado de nombre data-* (data-filetype, data-info, data-loquesea) con un valor igual a valor.
+// [nombre_atributo~=valor], selecciona los elementos que tienen un atributo llamado nombre_atributo y con el que uno de los valores (separados por espacios) coincide con el indicado por valor.
+
+// <article class="resaltado archivo ingles"></article>
+// article[class~="resaltado"], El carácter ~ indica que estos selectores deben seleccionar un elemento <article> cuyo valor de atributo class es una lista de valores separados por espacios en blanco, pero sólo si uno de esos valores es igual al valor indicado dentro de las comillas.
+// Aquí hay uno especial que impresionará a tus amigos. No mucha gente sabe de éste truco. El símbolo tilde (~) nos permite afectar un atributo que tenga una lista de valores separados por espacios.
