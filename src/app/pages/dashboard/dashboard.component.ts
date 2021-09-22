@@ -32,24 +32,24 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // this.paginacion();
-    // this.buscador.valueChanges
-    //   .pipe(
-    //     debounceTime(500),
-    //     startWith(''),
-    //     tap(data => console.log(data)),
-    //     takeUntil(this.buscadorSubject),
-    //     distinctUntilChanged(),
-    //     switchMap((dt) => this.inicioService.buscar(dt)),
-    //     map(data => {
-    //       try {
-    //         data.results = this.inicioService.favoritos(data.results);
-    //         return data;
-    //       } catch (error) {
-    //         return data;
-    //       }
-    //     }),
-    //     catchError(err => of(err)),
-    //   ).subscribe(r => this.request = r);
+    this.buscador.valueChanges
+      .pipe(
+        debounceTime(500),
+        startWith(''),
+        tap(data => console.log(data)),
+        takeUntil(this.buscadorSubject),
+        distinctUntilChanged(),
+        switchMap((dt) => this.inicioService.buscar(dt)),
+        map(data => {
+          try {
+            data.results = this.inicioService.favoritos(data.results);
+            return data;
+          } catch (error) {
+            return data;
+          }
+        }),
+        catchError(err => of(err)),
+      ).subscribe(r => this.request = r);
 
   }
 
