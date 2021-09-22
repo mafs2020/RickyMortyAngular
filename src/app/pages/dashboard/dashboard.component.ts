@@ -20,36 +20,36 @@ export class DashboardComponent implements OnInit, OnDestroy {
   buscadorSubject$:  Subject<string> = new Subject();
   buscadorSubject = this.buscadorSubject$.asObservable();
   dd: string = '';
-  loading: boolean = true;
+  loading: boolean = false;
   constructor(
     private inicioService: InicioService,
     private dos: CrudService,
     private router: Router
   ) {
-    this.router.events.pipe(delay(1000))
-    .subscribe((e: Event) => this.checkEvents(e as RouterEvent));
+    // this.router.events.pipe(delay(1000))
+    // .subscribe((e: Event) => this.checkEvents(e as RouterEvent));
   }
 
   ngOnInit(): void {
     // this.paginacion();
-    this.buscador.valueChanges
-      .pipe(
-        debounceTime(500),
-        startWith(''),
-        tap(data => console.log(data)),
-        takeUntil(this.buscadorSubject),
-        distinctUntilChanged(),
-        switchMap((dt) => this.inicioService.buscar(dt)),
-        map(data => {
-          try {
-            data.results = this.inicioService.favoritos(data.results);
-            return data;
-          } catch (error) {
-            return data;
-          }
-        }),
-        catchError(err => of(err)),
-      ).subscribe(r => this.request = r);
+    // this.buscador.valueChanges
+    //   .pipe(
+    //     debounceTime(500),
+    //     startWith(''),
+    //     tap(data => console.log(data)),
+    //     takeUntil(this.buscadorSubject),
+    //     distinctUntilChanged(),
+    //     switchMap((dt) => this.inicioService.buscar(dt)),
+    //     map(data => {
+    //       try {
+    //         data.results = this.inicioService.favoritos(data.results);
+    //         return data;
+    //       } catch (error) {
+    //         return data;
+    //       }
+    //     }),
+    //     catchError(err => of(err)),
+    //   ).subscribe(r => this.request = r);
 
   }
 

@@ -94,25 +94,42 @@
     border-bottom: 1px solid #fff;
 }
 
-@media screen and (max-width: 900px) {
-    .buscador input{ 
-        width: 80%;
-    }
-}
 
-@media screen and (max-width: 900px) {
-    .buscador input{ 
+@media (max-width: 900px ){
+
+    .buscador input{
         width: 90%;
+        display: block;
+        margin: auto;
+        // text-align: center;
     }
-}
-
-@media screen and (max-width: 770px ){
     .buscador{
+        width: 90%;
         padding: 1rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+
+    .img {
+        width: 50%;
+        margin: 0 auto;
+    }
+    .cards{
+        width: 100%;
+    }
+    .no-datos{
+        color: #fff;
+        width: 100%;
+        margin: 5px auto;
+    }
+    .centro{
+        margin: 5px auto;
+        width: 100%;
+        height: auto;
+        text-align: center;
+        display: block;
     }
 }
 
@@ -134,4 +151,16 @@
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+.no-datos{
+    padding: 1rem;
+    // width: 30%;
+    border-radius: 10px;
+    font-size: 2rem;
+}
+
+img{
+    display: block;
+    margin: auto;
 }

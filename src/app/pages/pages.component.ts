@@ -34,4 +34,11 @@ export class PagesComponent implements OnInit {
     }
   }
 
+  onActivate(event:any): void {
+    console.log('onActivate :>> ', event);
+  }
+  onDeactivate(event:any): void {
+    console.log('onDeactivate :>> ', event);
+  }
+
 }

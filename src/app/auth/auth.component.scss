@@ -71,3 +71,24 @@
 // <article class="resaltado archivo ingles"></article>
 // article[class~="resaltado"], El carácter ~ indica que estos selectores deben seleccionar un elemento <article> cuyo valor de atributo class es una lista de valores separados por espacios en blanco, pero sólo si uno de esos valores es igual al valor indicado dentro de las comillas.
 // Aquí hay uno especial que impresionará a tus amigos. No mucha gente sabe de éste truco. El símbolo tilde (~) nos permite afectar un atributo que tenga una lista de valores separados por espacios.
+.contenedor{
+    display: grid;
+    min-height: 100vh;
+    min-width: 100vw;
+    background: crimson;
+    color: #fff;
+    // son 3 columns de un fr
+    // columns y el tamaño
+    grid-template-columns: 1fr 1fr;
+    // grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 1rem;
+}
+
+.item{
+    width: 100%;
+    height: 30%;
+    background-color: chartreuse;
+    // grid-column: 3 / 3;
+    // grid-row: 1;
+}
