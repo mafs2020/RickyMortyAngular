@@ -5,6 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ![GitHub top language](https://img.shields.io/github/languages/top/mafs2020/RickyMortyAngular?color=dssd&label=Angular&logo=aaa&logoColor=ggggg&style=for-the-badge)
 
 ![GitHub top language](https://img.shields.io/github/languages/top/mafs2020/RickyMortyAngular?label=html&logoColor=ggggg&style=for-the-badge)
+
 ![GitHub top language](https://img.shields.io/github/languages/top/mafs2020/RickyMortyAngular?style=for-the-badge)
 
 ![GitHub top language](https://img.shields.io/github/issues/mafs2020/RickyMortyAngular)
