@@ -20,10 +20,35 @@ describe('InicioService Prueba', () => {
     expect(service).toBeTruthy();
   });
 
-  it('regresar personjes', () => {
+  it('regresar personjes', (done: DoneFn) => {
     expect( service.getAllChrcter$().subscribe(d => {
       expect(d).not.toBe(null);
+      done();
     }))
+  });
+  it('regresar personjes con Link', (done: DoneFn) => {
+
+    expect( service.getAllChrcter$('https://rickandmortyapi.com/api/character').subscribe(d => {
+      expect(d).not.toBe(null);
+      done();
+    }));
+
+  });
+
+  it('regresa personajes por nombre', (done: DoneFn) => {
+    service.buscar('').subscribe( v => {
+      expect(v).not.toBeNull();
+      done();
+    })
+  });
+
+
+  it('#getter de favoritos', () => {
+    expect(service.getsingleCharacter(1)  ).not.toBeNull();
+  });
+
+  it('#getter de favoritos Correcto', () => {
+    expect(service.personajesGetter()  ).toEqual([]);
   });
 
   // it('regresar personjes del localstorge', () => {
