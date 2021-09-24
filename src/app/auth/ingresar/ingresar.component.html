@@ -1,7 +1,7 @@
 <section class="container">
 
     <div class="formulario1">
-        <div class="margen">
+        <!-- <div class="margen"> -->
         <!-- <div class="margen" *ngIf="!register; else registroC;"> -->
             <form [formGroup]="formulario" *ngIf="!register; else registroA;">
                 <mat-form-field class="example-form-field" appearance="fill">
@@ -39,17 +39,16 @@
                 </div>
                 <br />
                 <div class="botones">
-                    <button mat-raised-button>Basic</button>
-                    <button mat-raised-button color="primary">Primary</button>
+                    <button mat-raised-button>Regresar</button>
+                    <button [disabled]="formulario.invalid" mat-raised-button color="primary">Entrar</button>
                 </div>
             </form>
             <ng-template #registroA>
-                <button mat-raised-button color="primary">Primary</button>
-                <button mat-raised-button color="primary">Primary</button>
-                <button mat-raised-button color="primary">Primary</button>
-                <button mat-raised-button color="primary">Primary</button>
+                <div class="noseve">
+                    <button (click)="cambiar()" mat-raised-button color="primary" class="botonMedio">Login</button>
+                </div>
             </ng-template>
-        </div>
+        <!-- </div> -->
     </div>
 
     <div class="formulario2">
@@ -114,14 +113,15 @@
                     </mat-form-field>
                 </div>
             </div>
-            <button mat-raised-button>Basic</button>
-            <button [disabled]="formulario.invalid" mat-raised-button color="primary">Primary</button>
+            <div class="botones">
+                <button mat-raised-button>Regresar</button>
+                <button [disabled]="formulario.invalid" mat-raised-button color="primary">Registrate</button>
+            </div>
         </form>
         <ng-template #registroC>
             <div class="noseve">
-                <button (click)="cambiar()" mat-raised-button color="primary" class="botonMedio">register</button>
+                <button (click)="cambiar()" mat-raised-button color="primary" class="botonMedio">Registrarte</button>
             </div>
-
         </ng-template>
         <!-- {{ formulario.value | json }}
         <p>formulario pristine: {{ formulario.pristine }}</p>
