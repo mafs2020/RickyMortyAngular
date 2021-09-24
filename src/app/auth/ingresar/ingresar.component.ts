@@ -18,7 +18,7 @@ function comparePasswordF(c: AbstractControl): { [key: string]: boolean } | null
 })
 export class IngresarComponent implements OnInit {
   formulario!: FormGroup;
-  register: boolean = true;
+  register: boolean = false;
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -36,8 +36,9 @@ export class IngresarComponent implements OnInit {
           validators: [Validators.required, Validators.minLength(2)],
           // asyncValidators: []
         }],
-        passwordDos: ['', [Validators.required, Validators.minLength(2)]],
-      }, {validators: comparePasswordF} )
+        passwordDos: [''],
+      // }, {validators: comparePasswordF} )
+      })
     });
   }
 
@@ -51,6 +52,19 @@ export class IngresarComponent implements OnInit {
   }
   get passwordControlDos(): AbstractControl {
     return this.formulario.get('comparePassword.passwordDos')!;
-  }  
+  }
+
+  cambiar(): void {
+    this.register= !this.register;
+    console.log('this.register :>> ', this.register);
+    if(this.register){
+      this.formulario.get('comparePassword')?.setValidators(comparePasswordF);
+      this.formulario.get('comparePassword.passwordDos')?.setValidators([Validators.required, Validators.minLength(2)])
+      this.formulario.updateValueAndValidity();
+    } else {
+      this.formulario.get('comparePassword.passwordDos')?.clearValidators();
+      this.formulario?.updateValueAndValidity();
+    }
+  }
 
 }
