@@ -1,0 +1,149 @@
+<section class="container">
+
+    <div class="formulario1">
+        <div class="margen">
+        <!-- <div class="margen" *ngIf="!register; else registroC;"> -->
+            <form [formGroup]="formulario" *ngIf="!register; else registroA;">
+                <mat-form-field class="example-form-field" appearance="fill">
+                    <mat-label>Nombre del Usuario</mat-label>
+                    <input matInput type="text" formControlName="nombre" name="value">
+                    <button matSuffix mat-icon-button aria-label="Clear">
+                    <!-- <mat-icon>close</mat-icon> -->
+                    </button>
+                    <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                    <mat-error *ngIf="nombreControl?.hasError('required')">
+                        el valor es obligtorio
+                    </mat-error>
+                    <!-- <mat-error *ngIf="nombreControl?.errors?.minLength"> -->
+                    <mat-error *ngIf="nombreControl.hasError('minLength')">
+                        debe de ser minimo de <strong> 3 letras</strong>
+                    </mat-error>
+                </mat-form-field>
+                <br>
+                <div formGroupName="comparePassword">
+                    <mat-form-field class="example-form-field" appearance="fill">
+                        <mat-label>Contraseña</mat-label>
+                        <input matInput type="text" formControlName="password" name="value">
+                        <button matSuffix mat-icon-button aria-label="Clear">
+                        <!-- <mat-icon>close</mat-icon> -->
+                        </button>
+                        <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                        <mat-error *ngIf="passwordControl.hasError('required')">
+                            el vlor es obligtorio
+                        </mat-error>
+                        <mat-error *ngIf="passwordControl?.hasError('minLength')">
+                        <!-- <mat-error *ngIf="nombreControl.hasError('minLength')"> -->
+                            debe de ser minimo de <strong> 2 letrs</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <br />
+                <div class="botones">
+                    <button mat-raised-button>Basic</button>
+                    <button mat-raised-button color="primary">Primary</button>
+                </div>
+            </form>
+            <ng-template #registroA>
+                <button mat-raised-button color="primary">Primary</button>
+                <button mat-raised-button color="primary">Primary</button>
+                <button mat-raised-button color="primary">Primary</button>
+                <button mat-raised-button color="primary">Primary</button>
+            </ng-template>
+        </div>
+    </div>
+
+    <div class="formulario2">
+        <form [formGroup]="formulario" *ngIf="register; else registroC;">
+            <div class="margend">
+
+                <mat-form-field class="example-form-field" appearance="fill">
+                    <mat-label>Nombre del Usuario</mat-label>
+                    <input matInput type="text" formControlName="nombre" name="value">
+                    <button matSuffix mat-icon-button aria-label="Clear">
+                    <!-- <mat-icon>close</mat-icon> -->
+                    </button>
+                    <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                    <mat-error *ngIf="nombreControl?.errors?.required && nombreControl?.touched">
+                        el vlor es obligtorio
+                    </mat-error>
+                    <mat-error *ngIf="nombreControl?.errors?.minLength && nombreControl?.touched">
+                        {{ nombreControl?.errors }}
+                    <!-- <mat-error *ngIf="nombreControl.hasError('minLength')"> -->
+                        debe de ser minimo de <strong> 2 letrs</strong>
+                    </mat-error>
+                </mat-form-field>
+                <div formGroupName="comparePassword">
+
+                    <mat-form-field class="example-form-field" appearance="fill">
+                        <mat-label>Contraseña</mat-label>
+                        <input matInput type="text" formControlName="password" name="value">
+                        <button matSuffix mat-icon-button aria-label="Clear">
+                        <!-- <mat-icon>close</mat-icon> -->
+                        </button>
+                        <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                        <mat-error *ngIf="passwordControl?.errors?.required && passwordControl?.touched">
+                            el vlor es obligtorio
+                        </mat-error>
+                        <mat-error *ngIf="passwordControl?.errors?.minLength && passwordControl?.touched">
+                            {{ nombreControl?.errors }}
+                        <!-- <mat-error *ngIf="nombreControl.hasError('minLength')"> -->
+                            debe de ser minimo de <strong> 2 letrs</strong>
+                        </mat-error>
+                    </mat-form-field>
+    
+                    <mat-form-field class="example-form-field" appearance="fill">
+                        <mat-label>Repetir Contraseña</mat-label>
+                        <input matInput type="text" formControlName="passwordDos" name="value">
+                        <button matSuffix mat-icon-button aria-label="Clear">
+                        <!-- <mat-icon>close</mat-icon> -->
+                        </button>
+                        <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                        <mat-error *ngIf="passwordControl?.errors?.required && passwordControlDos?.touched">
+                            el vlor es obligtorio
+                        </mat-error>
+                        <mat-error *ngIf="passwordControl?.hasError('minLength') && passwordControlDos?.touched">
+                            
+                        <!-- <mat-error *ngIf="nombreControl.hasError('minLength')"> -->
+                            debe de ser minimo de <strong> 2 letrs</strong>
+                        </mat-error>
+                        <mat-error *ngIf="passwordControl?.hasError('diferente') && passwordControlDos?.touched">
+                            
+                            <!-- <mat-error *ngIf="nombreControl.hasError('minLength')"> -->
+                                las contraseñas son <strong> diferentes</strong>
+                            </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <button mat-raised-button>Basic</button>
+            <button [disabled]="formulario.invalid" mat-raised-button color="primary">Primary</button>
+        </form>
+        <ng-template #registroC>
+            <div class="noseve">
+
+                <p>nononononononono</p>
+            </div>
+
+        </ng-template>
+        <!-- {{ formulario.value | json }}
+        <p>formulario pristine: {{ formulario.pristine }}</p>
+        <p>formulario pending: {{ formulario.pending }}</p>
+        <p>formulario touched: {{ formulario.touched }}</p>
+        <p>formulario untouched: {{ formulario.untouched }}</p>
+        <p>formulario valid: {{ formulario.valid }}       </p>
+        <p>formulario dirty: {{ formulario.dirty }}       </p> -->
+    </div>
+</section>
+        <p>{{ formulario.value | json }}</p>
+        <p>status : {{  formulario.status }}</p>
+        <p>parent : {{  formulario.parent }}</p>
+        <p>status : {{  formulario.status }}</p>
+        <p>valid : {{  formulario.valid }}</p>
+        <p>invalid : {{  formulario.invalid }}</p>
+        <p>pending : {{  formulario.pending }}</p>
+        <p>disabled : {{  formulario.disabled }}</p>
+        <p>enabled : {{  formulario.enabled }}</p>
+        <p>errors : {{  formulario.errors }}</p>
+        <p>pristine : {{  formulario.pristine }}</p>
+        <p>dirty : {{  formulario.dirty }}</p>
+        <p>touched : {{  formulario.touched }}</p>
+        <p>untouched : {{  formulario.untouched }}</p>
