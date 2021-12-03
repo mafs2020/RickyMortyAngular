@@ -28,7 +28,7 @@ export class IngresarComponent implements OnInit {
   iniciarFormulario(): void {
     this.formulario = this.fb.group({
       nombre: ['', {
-        updateOn: 'blur',
+        // updateOn: 'blur',
         validators: [Validators.required, Validators.minLength(2)],
       }],
       comparePassword: this.fb.group({
@@ -53,18 +53,29 @@ export class IngresarComponent implements OnInit {
   get passwordControlDos(): AbstractControl {
     return this.formulario.get('comparePassword.passwordDos')!;
   }
-
+  
   cambiar(): void {
+    this.formulario.patchValue({
+      nombre: '',
+      comparePassword: {
+        password: '',
+        passwordDos: ''
+      }
+    });
+    this.formulario.reset();
     this.register= !this.register;
     console.log('this.register :>> ', this.register);
-    if(this.register){
+    if(this.register) {
       this.formulario.get('comparePassword')?.setValidators(comparePasswordF);
       this.formulario.get('comparePassword.passwordDos')?.setValidators([Validators.required, Validators.minLength(2)])
       this.formulario.updateValueAndValidity();
     } else {
+      // this.formulario?.clearValidators();
       this.formulario.get('comparePassword.passwordDos')?.clearValidators();
+      this.formulario?.get('comparePassword')?.clearValidators();
       this.formulario?.updateValueAndValidity();
     }
+
   }
 
 }

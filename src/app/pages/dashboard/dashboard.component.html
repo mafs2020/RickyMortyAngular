@@ -1,4 +1,3 @@
-<div *ngIf="loading" class="loader"></div>
 <section *ngIf="!loading">
     <form>
         <div class="buscador">
@@ -10,6 +9,7 @@
             <div class="nav">
                 <a routerLink="/inicio">inicio</a>
                 <a routerLink="/inicio/favorito">Favoritos</a>
+                <!-- <a routerLink="/auth">Login</a> -->
             </div>
         </div>
     </form>
@@ -28,3 +28,7 @@
         <div class="no-datos"><p class="centro">no hay datos</p></div>
     </ng-template>
 </section>
+<ng-template #cargando>
+<div *ngIf="loading" class="loader"></div>
+
+</ng-template>

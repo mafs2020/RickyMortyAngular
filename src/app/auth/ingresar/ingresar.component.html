@@ -10,14 +10,13 @@
                     <button matSuffix mat-icon-button aria-label="Clear">
                     <!-- <mat-icon>close</mat-icon> -->
                     </button>
-                    <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
                     <mat-error *ngIf="nombreControl?.hasError('required')">
-                        el valor es obligtorio
+                        debe de ser minimo de 3 letras
+                    </mat-error>
+                    <mat-error *ngIf="nombreControl?.hasError('minLength')">
+                        el valor es obligtoriominLengthminLengthminLengthminLengthminLength
                     </mat-error>
                     <!-- <mat-error *ngIf="nombreControl?.errors?.minLength"> -->
-                    <mat-error *ngIf="nombreControl.hasError('minLength')">
-                        debe de ser minimo de <strong> 3 letras</strong>
-                    </mat-error>
                 </mat-form-field>
                 <br>
                 <div formGroupName="comparePassword">
@@ -39,7 +38,9 @@
                 </div>
                 <br />
                 <div class="botones">
-                    <button mat-raised-button>Regresar</button>
+                    <a routerLink="/inicio">
+                        <button mat-raised-button>Regresar</button>
+                    </a>
                     <button [disabled]="formulario.invalid" mat-raised-button color="primary">Entrar</button>
                 </div>
             </form>
@@ -114,7 +115,9 @@
                 </div>
             </div>
             <div class="botones">
-                <button mat-raised-button>Regresar</button>
+                <a routerLink="/inicio">
+                    <button mat-raised-button>Regresar</button>
+                </a>
                 <button [disabled]="formulario.invalid" mat-raised-button color="primary">Registrate</button>
             </div>
         </form>
@@ -123,13 +126,6 @@
                 <button (click)="cambiar()" mat-raised-button color="primary" class="botonMedio">Registrarte</button>
             </div>
         </ng-template>
-        <!-- {{ formulario.value | json }}
-        <p>formulario pristine: {{ formulario.pristine }}</p>
-        <p>formulario pending: {{ formulario.pending }}</p>
-        <p>formulario touched: {{ formulario.touched }}</p>
-        <p>formulario untouched: {{ formulario.untouched }}</p>
-        <p>formulario valid: {{ formulario.valid }}       </p>
-        <p>formulario dirty: {{ formulario.dirty }}       </p> -->
     </div>
 </section>
         <p>{{ formulario.value | json }}</p>
