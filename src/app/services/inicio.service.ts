@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { IInfo, IPersonaje, IRequest } from '../interfaces';
 
 import { catchError, map, tap } from 'rxjs/operators';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, of, Subject, throwError } from 'rxjs';
 import { CrudService } from './crud.service';
 
 @Injectable({
@@ -17,28 +17,30 @@ export class InicioService {
   url = "https://rickandmortyapi.com/api/character";
   info!: IInfo;
   personjesFvitos: IPersonaje[] = [];
-
+  private response: Subject<IRequest> = new Subject();
+  response$ = this.response.asObservable();
+  loader: Subject<boolean> = new Subject();
+  name = '';
   constructor(
     private http: HttpClient,
     private dos: CrudService
   ) { }
 
-  getAllChrcter$(url: string = this.url): Observable<IRequest|null> {
-    if(!url) {
-      return of();
-    }
-    return this.http.get<IRequest>(`${url}`)
+  getAllChrcter$(url: string = this.url, name = this.name): Observable<IRequest> {
+    return this.http.get<IRequest>(`${url}`, { params: { name } })
     .pipe(
       tap(data => this.info = data.info),
+      tap(data => console.log(data)),
       map(data => {
-        data.results = this.favoritos(data.results);
-        return data;
+        this.response.next(data);
+        // data.results = this.favoritos(data.results);
+        // return data;
       }),
       catchError(err => of(err)),
       catchError(err => throwError(err))
-    );
-  }
-
+      );
+    }
+    
   personajesGetter(desde = 0) : IPersonaje[] {
     const l = localStorage.getItem(this.personajes) as string;
     const arreglos = JSON.parse(l) as IPersonaje[] ?? [];

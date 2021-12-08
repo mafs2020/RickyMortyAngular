@@ -17,6 +17,10 @@ import { CardComponent } from './components/card/card.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
 import { DetallesComponent } from './detalles/detalles.component';
 
+// interceptor
+import { GlobalInterceptor } from './global.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [

@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   buscadorSubject = this.buscadorSubject$.asObservable();
   dd: string = '';
   loading: boolean = false;
+  response$ = this.inicioService.response$.pipe(tap(D => console.log(D)));
   constructor(
     private inicioService: InicioService,
     private dos: CrudService,
@@ -39,7 +40,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         tap(data => console.log(data)),
         takeUntil(this.buscadorSubject),
         distinctUntilChanged(),
-        switchMap((dt) => this.inicioService.buscar(dt)),
+        switchMap((dt) => this.inicioService.getAllChrcter$( undefined, dt)),
         map(data => {
           try {
             data.results = this.inicioService.favoritos(data.results);
@@ -53,16 +54,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   }
 
-  paginacion(atras?: boolean) {
-    let urll = atras ? this.request?.info?.prev! : this.request?.info?.next!;
-    this.inicioService.getAllChrcter$(urll)
-    .pipe(tap(data => {
-      if(!data){
-        return;
-      }
-      this.request = data;
-      console.log(!!this.request?.info?.next);
-    }),
+  paginacion(url?: string) {
+    console.log(url);
+    this.inicioService.getAllChrcter$(url)
+    .pipe(tap(data => console.log(data)),
     takeUntil(this.buscadorSubject))
     .subscribe();
   }

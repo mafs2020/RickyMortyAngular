@@ -1,4 +1,4 @@
-<section *ngIf="!loading">
+<section *ngIf="response$ | async as res; else cargando">
     <form>
         <div class="buscador">
             <input [formControl]="buscador" type="text" name="buscador" id="buscador" placeholder="personaje">
@@ -13,14 +13,14 @@
             </div>
         </div>
     </form>
-    <div class="cards" *ngIf="request?.results?.length; else nodata">
-        <ng-container *ngFor="let item of request?.results" class="card">
+    <div class="cards" *ngIf="res?.results?.length; else nodata">
+        <ng-container *ngFor="let item of res?.results" class="card">
             <app-card [personaje]="item" [lugar]="'normal'" (personajeEliminar)="hola2($event)"></app-card>
         </ng-container>
     </div>
     <div class="botones">
-        <input [disabled]="!request?.info?.prev" (click)="paginacion(true)" type="button" value="regresar" />
-        <input [disabled]="!request?.info?.next" (click)="paginacion()" type="button" value="siguiente" />
+        <input [disabled]="!res?.info?.prev" (click)="paginacion(res?.info?.prev!)" type="button" value="regresar" />
+        <input [disabled]="!res?.info?.next" (click)="paginacion(res?.info?.next!)" type="button" value="siguiente" />
     </div>
     
     <ng-template class="cards" #nodata>
@@ -29,6 +29,6 @@
     </ng-template>
 </section>
 <ng-template #cargando>
-<div *ngIf="loading" class="loader"></div>
+<div class="loader"></div>
 
 </ng-template>
