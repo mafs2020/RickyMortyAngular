@@ -17,6 +17,9 @@ export class GlobalInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     this.inicioService.loader.next(true);
     console.log('object');
-    return next.handle(request).pipe(finalize(() => console.log('Sequence complete')));
+    return next.handle(request).pipe(finalize(() => {
+      console.log('Sequence complete');
+      this.inicioService.loader.next(false);
+    }));
   }
 }

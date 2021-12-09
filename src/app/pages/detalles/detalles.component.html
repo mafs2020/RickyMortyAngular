@@ -1,19 +1,38 @@
 <section *ngIf="data$ | async as d; else nodta;">
+    <!-- {{ d | json }} -->
     <input class="botonR" routerLink="/inicio" type="button" value="Inicio">
     <div class="d-flex">
         <div class="mitad">
-            <p>nombre: </p>
+            <div class="centro">
+                <p>nombre: </p>
             <p>  {{  d.name }}</p>
-            <p>Estado: </p>
+            </div>
+
+            <div class="centro">
+                <p>Estado: </p>
             <p>  {{  d.status }}</p>
-            <p>Especies: </p>
+            </div>
+
+            <div class="centro">
+                <p>Especies: </p>
             <p>  {{  d.species }}</p>
-            <p>genero: </p>
-            <p>  {{  d.gender | generoEs }}</p>
-            <p>origen: </p> 
+            </div>
+
+            <div class="centro">
+                <p>genero: </p>
+            
+            <p *ngIf="d.gender === 'Female'">  {{  d.gender | generoEs }}</p>
+            <p *ngIf="d.gender === 'Male'">  {{  d.gender | generoEs }}</p>
+            </div>
+
+            <div class="centro">
+                <p>origen: </p> 
             <p>  {{  d.origin.name }}</p>
-            <p>location: </p>
-            <p>  {{  d.location.name }}</p>
+            </div>
+            <div class="centro">
+                <p>location: </p>
+                <p>  {{  d.location.name }}</p>
+            </div>
             <!-- <p>url </p>
             <p>  {{  d.url }}</p> -->
         </div>
@@ -22,12 +41,19 @@
         </div>
     </div>
     <!-- <p>episodios donde aparecio:</p> -->
-    <select [formControl]="select" name="d" id="">
+     <!-- <select [formControl]="select" name="d" id="">
         <option [ngValue]="null" disabled selected>Selecciona un Capitulo</option>
-        <!-- value y ngValue es lo mismo solo que con ngValue puede ser tambien un objeto  -->
-        <!-- <option *ngFor="let item of d.episode" [ngValue]="item">{{  item }}</option> -->
         <option *ngFor="let item of d.episode" [value]="item" >{{  item }}</option>
-    </select>
+    </select>  -->
+    <mat-form-field  name="d" appearance="fill">
+        <mat-label>Capitulo en que aparece</mat-label>
+        <mat-select [formControl]="select">
+          <mat-option *ngFor="let item of d.episode" [value]="item">
+            {{item}}
+        </mat-option>
+        </mat-select>
+    </mat-form-field>
+
     <div *ngIf="episodioNgModel" class="tarjeta">
         <p *ngIf="episodioNgModel?.name">Nombre del episodio: {{ episodioNgModel?.name }} </p>
         <p *ngIf="episodioNgModel?.name">Fecha de creacion: {{ episodioNgModel?.air_date }} </p>

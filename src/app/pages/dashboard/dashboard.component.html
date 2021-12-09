@@ -1,4 +1,4 @@
-<section *ngIf="response$ | async as res; else cargando">
+<section *ngIf="response$ | async as res;">
     <form>
         <div class="buscador">
             <input [formControl]="buscador" type="text" name="buscador" id="buscador" placeholder="personaje">
@@ -28,7 +28,6 @@
         <div class="no-datos"><p class="centro">no hay datos</p></div>
     </ng-template>
 </section>
-<ng-template #cargando>
-<div class="loader"></div>
-
-</ng-template>
+<div *ngIf="loading$ | async">
+    <div class="loader"></div>
+</div>

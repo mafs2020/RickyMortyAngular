@@ -19,8 +19,9 @@ import { DetallesComponent } from './detalles/detalles.component';
 
 // interceptor
 import { GlobalInterceptor } from './global.interceptor';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CrudService } from '../services/crud.service';
+import { InicioService } from '../services/inicio.service';
 
 @NgModule({
   declarations: [

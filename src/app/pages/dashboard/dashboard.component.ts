@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   buscadorSubject$:  Subject<string> = new Subject();
   buscadorSubject = this.buscadorSubject$.asObservable();
   dd: string = '';
-  loading: boolean = false;
+  loading$ = this.inicioService.loader;
   response$ = this.inicioService.response$.pipe(tap(D => console.log(D)));
   constructor(
     private inicioService: InicioService,
@@ -78,13 +78,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   checkEvents(routerEvent: RouterEvent): void {
     // console.log(routerEvent);
     if (routerEvent instanceof NavigationStart) {
-      this.loading = true;
+      
     }
 
     if (routerEvent instanceof NavigationEnd ||
         routerEvent instanceof NavigationCancel ||
         routerEvent instanceof NavigationError) {
-      this.loading = false;
+      
     }
   }
   

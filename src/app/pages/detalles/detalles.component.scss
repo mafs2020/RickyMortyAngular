@@ -14,7 +14,7 @@ section{
     justify-content: space-around;
     align-items: center;
     border: 1px solid #fff;
-    padding: 2rem;
+    padding: 1rem 0;
     border-radius: 1rem;    
     // background-color: teal;
     color: #fff;
@@ -23,6 +23,7 @@ section{
 
 section .d-flex div p{
     margin-bottom: 0.7rem;
+    margin-right: 0.7rem;
     font-weight: 600;
     
 }
@@ -31,13 +32,25 @@ section .d-flex div p{
 }
 .mitad p{
     // animation: mover 1s;
+    display: inline-block;
     animation: imgopacity 2s ease-in-out;
+    text-transform: capitalize;
+    font-weight: 300;
+}
+
+.centro{
+    text-align: center;
+}
+.centro:first-of-type{
+    margin-right: 10px;
 }
 .mitad p:nth-child(even){
-    background-color: crimson;
-    padding: 0.3rem;
+    background-color: #EEEEEE;
+    color: #000;
+    display: inline-block;
+    padding: 0.45rem;
     border-radius: 8px;
-    font-weight: 300 !important;
+    font-weight: 600 !important;
 }
 
 img{
@@ -50,10 +63,15 @@ img{
 }
 
 section select option {
-    color: #000;
+    color: #fff;
     &:hover{
         cursor: pointer;
     }
+}
+
+mat-form-field{
+    display: block;
+    margin: 10px auto;
 }
 
 .tarjeta{
