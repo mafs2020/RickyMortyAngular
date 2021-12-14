@@ -29,6 +29,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ) {
     // this.router.events.pipe(delay(1000))
     // .subscribe((e: Event) => this.checkEvents(e as RouterEvent));
+    this.inicioService.loader.next(true);
   }
 
   ngOnInit(): void {
